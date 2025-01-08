@@ -35,3 +35,18 @@ body {
     color: #fff;
     margin: 10px;
 }
+.roots {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.roots button {
+    flex-grow: 1;
+    min-width:  50px;
+    height: 50px;
+    font-size: 1em;
+    background: rgb(107, 27, 255);
+    border: none;
+    color: #fff;
+    margin: 10px;
+}
