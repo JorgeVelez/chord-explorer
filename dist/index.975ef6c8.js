@@ -612,7 +612,7 @@ const intervalsInChord = document.querySelector(".intervals-in-chord");
 const notesInChord = document.querySelector(".notes-in-chord");
 let selectedStartNote = "C";
 let selectedOctave = "2";
-let selectedChord;
+let selectedChord = "";
 const app = {
     init () {
         // this.setupStartNotes();
@@ -665,6 +665,7 @@ const app = {
         buttons.addEventListener("click", (event)=>{
             if (event.target.classList.contains("buttons")) return;
             selectedChord = event.target.innerText;
+            console.log(selectedChord);
             this.displayAndPlayChord(selectedChord);
         });
         addEventListener("keydown", (event)=>{

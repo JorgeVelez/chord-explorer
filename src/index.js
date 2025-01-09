@@ -25,7 +25,7 @@ const notesInChord = document.querySelector('.notes-in-chord');
 
 let selectedStartNote = 'C';
 let selectedOctave = '2';
-let selectedChord;
+let selectedChord="";
 
 const app = {
     init() {
@@ -85,6 +85,7 @@ const app = {
                 return;
             }
             selectedChord = event.target.innerText;
+            console.log(selectedChord);
             this.displayAndPlayChord(selectedChord);
         });
 
