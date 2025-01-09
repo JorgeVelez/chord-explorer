@@ -15,6 +15,7 @@ const sound = new Howl({
 });
 
 const startNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']; 
+const chordQualities = ['M', 'maj7', 'maj9', 'm', 'm7', 'm9', 'dim', 'dim7', 'aug', 'A', 'A#', 'B']; 
 
 //const startNoteSelector = document.querySelector('#start-note');
 const octaveSelector = document.querySelector('#octave');
@@ -22,10 +23,11 @@ const buttons = document.querySelector('.buttons');
 const roots = document.querySelector('.roots');
 const intervalsInChord = document.querySelector('.intervals-in-chord');
 const notesInChord = document.querySelector('.notes-in-chord');
+const chordName = document.querySelector('.chord-name');
 
 let selectedStartNote = 'C';
 let selectedOctave = '2';
-let selectedChord="";
+let selectedChord="M";
 
 const app = {
     init() {
@@ -51,6 +53,8 @@ const app = {
         startNotes.forEach(root => {
             let rootButton = this.createElement('button', root);
             roots.appendChild(rootButton);
+            if(root==selectedStartNote)
+                rootButton.style.backgroundColor = "MediumSpringGreen";
         });
         
     },
@@ -61,6 +65,8 @@ const app = {
         chordNames.forEach(chordName => {
             let chordButton = this.createElement('button', chordName);
             buttons.appendChild(chordButton);
+            if(chordName==selectedChord)
+                chordButton.style.backgroundColor = "Tomato";
         });
         
     },
@@ -76,79 +82,134 @@ const app = {
                 //alert("no existe!");
                 return;
             }
-            this.resetButtons();
+            this.resetRootButtons();
             event.target.style.backgroundColor = "MediumSpringGreen";
             selectedStartNote = event.target.innerText;
+            this.displayAndPlayChord(selectedChord);
         });
         buttons.addEventListener('click', (event) => {
             if (event.target.classList.contains('buttons')) {
                 return;
             }
+            this.resetButtons();
+            event.target.style.backgroundColor = "Tomato";
+            console.log(event.target);
             selectedChord = event.target.innerText;
             console.log(selectedChord);
-            this.displayAndPlayChord(selectedChord);
         });
 
         addEventListener("keydown", (event) => { 
            
             switch (event.key) {
-                case "a":
+                case "1":
                    this.changeRootButton(startNotes[0]);
-                    
                   break; 
-                case "w":
+                case "2":
                     this.changeRootButton(startNotes[1]);
                   break;
-                case "s":
+                case "3":
                     this.changeRootButton(startNotes[2]);
                   break;
-                case "e":
+                case "4":
                     this.changeRootButton(startNotes[3]);
                   break;
-                case "d":
+                case "5":
                     this.changeRootButton(startNotes[4]);
                   break;
-                case "f":
+                case "6":
                     this.changeRootButton(startNotes[5]);
                   break;
-                  case "t":
+                  case "7":
                     this.changeRootButton(startNotes[6]);
                     break;
-                    case "g":
+                    case "8":
                         this.changeRootButton(startNotes[7]);
                         break;
-                      case "y":
+                      case "9":
                         this.changeRootButton(startNotes[8]);
                         break;
-                      case "h":
+                      case "0":
                         this.changeRootButton(startNotes[9]);
                         break;
-                      case "u":
+                      case "-":
                         this.changeRootButton(startNotes[10]);
                         break;
-                      case "j":
-                        this.changeRootButton(startNotes[11]);
+                        case "+":
+                            this.changeRootButton(startNotes[11]);
+                            break;
+                            case "=":
+                                this.changeRootButton(startNotes[11]);
+                                break;
+                            case "m":
+                        this.changeChordButton("M");
                         break;
+                        case "j":
+                        this.changeChordButton("maj7");
+                        break;
+                        case "u":
+                        this.changeChordButton("6");
+                        break;
+                        case "i":
+                        this.changeChordButton("7");
+                        break;
+                        case "n":
+                        this.changeChordButton("m");
+                        break;
+                        case "h":
+                        this.changeChordButton("m7");
+                        break;
+                        case "y":
+                        this.changeChordButton("m6");
+                        break;
+                        case "b":
+                        this.changeChordButton("dim");
+                        break;
+                        case "g":
+                        this.changeChordButton("dim7");
+                        break;
+                        case "v":
+                            this.changeChordButton("aug");
+                            break;
+                           
                      
                 default:
                   return; 
               }
         });
     },
-    resetButtons() {
+    resetRootButtons() {
         const rootscollection = document.getElementsByClassName("roots")[0].querySelectorAll("button"); ;
         rootscollection.forEach(rootsbutton => {
             rootsbutton.style.backgroundColor = "MediumSlateBlue";
         });
     },
+    resetButtons() {
+        const buttonscollection = document.getElementsByClassName("buttons")[0].querySelectorAll("button"); ;
+        buttonscollection.forEach(chordbutton => {
+            chordbutton.style.backgroundColor = "Orange";
+        });
+    },
     changeRootButton(val) {
-        this.resetButtons();
+        this.resetRootButtons();
         selectedStartNote = val;
         const rootscollection = document.getElementsByClassName("roots")[0].querySelectorAll("button"); ;
         rootscollection.forEach(rootsbutton => {
             if(rootsbutton.innerText==val)
             rootsbutton.style.backgroundColor = "MediumSpringGreen";
         });
+        this.displayAndPlayChord(selectedChord);
+    },
+    changeChordButton(val) {
+        this.resetButtons();
+
+       this.resetButtons();
+       const rootscollection = document.getElementsByClassName("buttons")[0].querySelectorAll("button");
+       rootscollection.forEach(rootsbutton => {
+           if(rootsbutton.innerText==val)
+           rootsbutton.style.backgroundColor = "Tomato";
+       });
+        selectedChord = val;
+        console.log(selectedChord);
     },
     displayAndPlayChord(selectedChord) {
         let chordIntervals = chord(selectedChord).intervals;
@@ -158,7 +219,10 @@ const app = {
         let chordNotes = chordIntervals.map(val => {
             return transpose(startNoteWithOctave, val);
         });
+
         notesInChord.innerText = chordNotes.join(' - ');
+        chordName.innerText =  chord(selectedStartNote + selectedOctave+selectedChord).name;
+       
         soundEngine.play(chordNotes);
     },
     createElement(elementName, content) {

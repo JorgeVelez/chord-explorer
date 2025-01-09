@@ -32,7 +32,7 @@ body {
 
 .buttons button {
   color: #fff;
-  background: teal;
+  background: orange;
   border: none;
   flex-grow: 1;
   min-width: 200px;
@@ -49,7 +49,7 @@ body {
 
 .roots button {
   color: #fff;
-  background: #6b1bff;
+  background: #7b68ee;
   border: none;
   flex-grow: 1;
   min-width: 50px;
