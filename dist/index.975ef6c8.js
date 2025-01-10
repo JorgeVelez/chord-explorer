@@ -578,10 +578,369 @@ var _tonal = require("@tonaljs/tonal");
 var _chord = require("@tonaljs/chord");
 var _chordDictionary = require("@tonaljs/chord-dictionary");
 var _howler = require("howler");
-const sound = new Howl({
+var _webmidi = require("webmidi");
+const sound = new (0, _howler.Howl)({
     src: [
-        "assets/pianosprite.mp3"
+        "assets/piano.webm",
+        "assets/piano.mp3"
     ],
+    //piano
+    sprite: {
+        "21": [
+            89e3,
+            14117.73242630386
+        ],
+        "22": [
+            105e3,
+            14117.73242630386
+        ],
+        "23": [
+            121e3,
+            14117.73242630386
+        ],
+        "24": [
+            137e3,
+            14117.73242630386
+        ],
+        "25": [
+            153e3,
+            14117.73242630386
+        ],
+        "26": [
+            169e3,
+            14117.73242630386
+        ],
+        "27": [
+            185e3,
+            14117.73242630386
+        ],
+        "28": [
+            201e3,
+            14117.73242630386
+        ],
+        "29": [
+            217e3,
+            14117.73242630386
+        ],
+        "30": [
+            233e3,
+            14117.73242630386
+        ],
+        "31": [
+            249e3,
+            14117.73242630386
+        ],
+        "32": [
+            265e3,
+            14860.77097505671
+        ],
+        "33": [
+            281e3,
+            14117.73242630386
+        ],
+        "34": [
+            297e3,
+            14860.77097505671
+        ],
+        "35": [
+            313e3,
+            14860.77097505671
+        ],
+        "36": [
+            329e3,
+            14860.77097505671
+        ],
+        "37": [
+            345e3,
+            14860.77097505671
+        ],
+        "38": [
+            361e3,
+            14117.73242630386
+        ],
+        "39": [
+            377e3,
+            14117.73242630386
+        ],
+        "40": [
+            393e3,
+            14117.73242630386
+        ],
+        "41": [
+            409e3,
+            12631.65532879816
+        ],
+        "42": [
+            423e3,
+            12631.65532879816
+        ],
+        "43": [
+            437e3,
+            11888.616780045368
+        ],
+        "44": [
+            45e4,
+            11145.578231292518
+        ],
+        "45": [
+            463e3,
+            14117.73242630386
+        ],
+        "46": [
+            479e3,
+            14117.73242630386
+        ],
+        "47": [
+            495e3,
+            14117.73242630386
+        ],
+        "48": [
+            511e3,
+            11888.616780045368
+        ],
+        "49": [
+            524e3,
+            11888.616780045368
+        ],
+        "50": [
+            537e3,
+            12631.65532879816
+        ],
+        "51": [
+            551e3,
+            11888.616780045368
+        ],
+        "52": [
+            564e3,
+            11145.57823129246
+        ],
+        "53": [
+            577e3,
+            13374.693877551068
+        ],
+        "54": [
+            592e3,
+            13374.693877551068
+        ],
+        "55": [
+            607e3,
+            12631.65532879816
+        ],
+        "56": [
+            621e3,
+            13374.693877551068
+        ],
+        "57": [
+            636e3,
+            12631.65532879816
+        ],
+        "58": [
+            65e4,
+            12631.65532879816
+        ],
+        "59": [
+            664e3,
+            8173.424036281176
+        ],
+        "60": [
+            674e3,
+            8173.424036281176
+        ],
+        "61": [
+            684e3,
+            7430.385487528383
+        ],
+        "62": [
+            693e3,
+            11888.616780045368
+        ],
+        "63": [
+            706e3,
+            11145.57823129246
+        ],
+        "64": [
+            719e3,
+            11145.57823129246
+        ],
+        "65": [
+            732e3,
+            12631.65532879816
+        ],
+        "66": [
+            746e3,
+            11888.616780045368
+        ],
+        "67": [
+            759e3,
+            11888.616780045368
+        ],
+        "68": [
+            772e3,
+            11888.616780045368
+        ],
+        "69": [
+            785e3,
+            11888.616780045368
+        ],
+        "70": [
+            798e3,
+            11888.616780045368
+        ],
+        "71": [
+            811e3,
+            10402.539682539667
+        ],
+        "72": [
+            823e3,
+            9659.501133786875
+        ],
+        "73": [
+            834e3,
+            9659.501133786875
+        ],
+        "74": [
+            845e3,
+            7430.385487528383
+        ],
+        "75": [
+            854e3,
+            7430.385487528383
+        ],
+        "76": [
+            863e3,
+            7430.385487528383
+        ],
+        "77": [
+            872e3,
+            10402.539682539667
+        ],
+        "78": [
+            884e3,
+            10402.539682539667
+        ],
+        "79": [
+            896e3,
+            10402.539682539667
+        ],
+        "80": [
+            908e3,
+            13374.693877551068
+        ],
+        "81": [
+            923e3,
+            13374.693877551068
+        ],
+        "82": [
+            938e3,
+            13374.693877551068
+        ],
+        "83": [
+            953e3,
+            13374.693877551068
+        ],
+        "84": [
+            968e3,
+            13374.693877551068
+        ],
+        "85": [
+            983e3,
+            13374.693877551068
+        ],
+        "86": [
+            998e3,
+            14117.73242630386
+        ],
+        "87": [
+            1014e3,
+            14117.732426303746
+        ],
+        "88": [
+            103e4,
+            14117.732426303746
+        ],
+        "89": [
+            1046e3,
+            9659.501133786762
+        ],
+        "90": [
+            1057e3,
+            9659.501133786762
+        ],
+        "91": [
+            1068e3,
+            9659.501133786762
+        ],
+        "92": [
+            1079e3,
+            9659.501133786762
+        ],
+        "93": [
+            109e4,
+            9659.501133786762
+        ],
+        "94": [
+            1101e3,
+            9659.501133786762
+        ],
+        "95": [
+            1112e3,
+            12631.65532879816
+        ],
+        "96": [
+            1126e3,
+            12631.65532879816
+        ],
+        "97": [
+            114e4,
+            12631.65532879816
+        ],
+        "98": [
+            1154e3,
+            8173.424036281176
+        ],
+        "99": [
+            1164e3,
+            8173.424036281176
+        ],
+        "100": [
+            0,
+            8173.42403628118
+        ],
+        "101": [
+            1e4,
+            8916.46258503401
+        ],
+        "102": [
+            2e4,
+            8916.46258503401
+        ],
+        "103": [
+            3e4,
+            8916.46258503401
+        ],
+        "104": [
+            4e4,
+            9659.501133786847
+        ],
+        "105": [
+            51e3,
+            9659.501133786847
+        ],
+        "106": [
+            62e3,
+            9659.501133786847
+        ],
+        "107": [
+            73e3,
+            6687.346938775505
+        ],
+        "108": [
+            81e3,
+            6687.346938775505
+        ]
+    },
+    //epiano
+    //sprite:{"21":[27e3,14860.770975056688],"22":[43e3,14860.770975056688],"23":[59e3,14860.770975056696],"24":[75e3,14860.770975056696],"25":[91e3,14860.770975056696],"26":[107e3,14860.770975056696],"27":[123e3,14860.770975056681],"28":[139e3,14860.770975056681],"29":[155e3,14860.770975056681],"30":[171e3,14860.770975056681],"31":[187e3,14860.770975056681],"32":[203e3,14860.770975056681],"33":[219e3,14860.770975056681],"34":[235e3,14860.770975056681],"35":[251e3,14860.77097505671],"36":[267e3,14860.77097505671],"37":[283e3,14117.73242630386],"38":[299e3,14860.77097505671],"39":[315e3,14860.77097505671],"40":[331e3,14860.77097505671],"41":[347e3,14860.77097505671],"42":[363e3,14117.73242630386],"43":[379e3,14117.73242630386],"44":[395e3,14117.73242630386],"45":[411e3,14117.73242630386],"46":[427e3,14117.73242630386],"47":[443e3,14117.73242630386],"48":[459e3,14117.73242630386],"49":[475e3,14117.73242630386],"50":[491e3,14117.73242630386],"51":[507e3,14117.73242630386],"52":[523e3,14117.73242630386],"53":[539e3,12631.65532879816],"54":[553e3,14117.73242630386],"55":[569e3,14117.73242630386],"56":[585e3,14117.73242630386],"57":[601e3,14117.73242630386],"58":[617e3,14117.73242630386],"59":[633e3,12631.65532879816],"60":[647e3,11145.57823129246],"61":[66e4,11145.57823129246],"62":[673e3,11145.57823129246],"63":[686e3,8916.462585033969],"64":[696e3,8173.424036281176],"65":[706e3,9659.501133786875],"66":[717e3,10402.539682539667],"67":[729e3,11145.57823129246],"68":[742e3,10402.539682539667],"69":[754e3,10402.539682539667],"70":[766e3,11145.57823129246],"71":[779e3,10402.539682539667],"72":[791e3,9659.501133786875],"73":[802e3,8916.462585033969],"74":[812e3,8916.462585033969],"75":[822e3,8173.424036281176],"76":[832e3,8173.424036281176],"77":[842e3,8173.424036281176],"78":[852e3,7430.385487528383],"79":[861e3,6687.346938775477],"80":[869e3,6687.346938775477],"81":[877e3,6687.346938775477],"82":[885e3,6687.346938775477],"83":[893e3,5944.308390022684],"84":[9e5,5944.308390022684],"85":[907e3,5201.269841269891],"86":[914e3,5201.269841269891],"87":[921e3,4458.2312925169845],"88":[927e3,4458.2312925169845],"89":[933e3,3715.1927437641916],"90":[938e3,3715.1927437641916],"91":[943e3,2972.154195011285],"92":[947e3,2972.154195011285],"93":[951e3,2972.154195011285],"94":[955e3,2972.154195011285],"95":[959e3,2229.1156462584922],"96":[963e3,2229.1156462584922],"97":[967e3,2229.1156462584922],"98":[971e3,2229.1156462584922],"99":[975e3,2229.1156462584922],"100":[0,1486.077097505669],"101":[3e3,1486.0770975056691],"102":[6e3,1486.0770975056691],"103":[9e3,1486.0770975056691],"104":[12e3,1486.0770975056691],"105":[15e3,1486.0770975056673],"106":[18e3,1486.0770975056673],"107":[21e3,1486.0770975056673],"108":[24e3,1486.0770975056673]},
     onload () {
         console.log("Sound file has been loaded. Do something here!");
         soundEngine.init();
@@ -625,11 +984,14 @@ const roots = document.querySelector(".roots");
 const intervalsInChord = document.querySelector(".intervals-in-chord");
 const notesInChord = document.querySelector(".notes-in-chord");
 const chordName = document.querySelector(".chord-name");
+var mySynth;
+var myKeyboard;
 let selectedStartNote = "C";
 let selectedOctave = "2";
 let selectedChord = "M";
 const app = {
     init () {
+        (0, _webmidi.WebMidi).enable().then(()=>this.onEnabled()).catch((err)=>console.log(err));
         // this.setupStartNotes();
         this.setupOctaves();
         this.setupButtons();
@@ -642,6 +1004,30 @@ const app = {
     //         startNoteSelector.appendChild(noteNameOption);
     //     });
     // },
+    onEnabled () {
+        if ((0, _webmidi.WebMidi).inputs.length < 1) document.body.innerHTML += "No device detected.";
+        else {
+            console.log("Inputs:");
+            (0, _webmidi.WebMidi).inputs.forEach((device, index)=>{
+                //document.body.innerHTML+= `${index}: ${device.name} <br>`;
+                console.log(index + ":" + device.name);
+            });
+            console.log("Outputs:");
+            (0, _webmidi.WebMidi).outputs.forEach((device, index)=>{
+                //document.body.innerHTML+= `${index}: ${device.name} <br>`;
+                console.log(index + ":" + device.name);
+            });
+        }
+        myKeyboard = (0, _webmidi.WebMidi).inputs[1];
+        mySynth = (0, _webmidi.WebMidi).outputs[0];
+        // const mySynth = WebMidi.getInputByName("TYPE NAME HERE!")
+        myKeyboard.channels[1].addListener("noteon", (e)=>{
+            // document.body.innerHTML+= `${e.note.name} <br>`;
+            console.log(e.note.number);
+            sound.volume(0.75);
+            sound.play(e.note.number.toString());
+        });
+    },
     setupOctaves () {
         for(let i = 1; i <= 4; i++){
             let octaveNumber = this.createElement("option", i);
@@ -814,15 +1200,12 @@ const app = {
 };
 const soundEngine = {
     init () {
-        const lengthOfNote = 2400;
-        let timeIndex = 0;
-        for(let i = 24; i <= 96; i++){
-            sound["_sprite"][i] = [
-                timeIndex,
-                lengthOfNote
-            ];
-            timeIndex += lengthOfNote;
-        }
+    // const lengthOfNote = 2400;
+    // let timeIndex = 0;
+    // for (let i = 24; i <= 96; i++) {
+    //     sound['_sprite'][i] = [timeIndex, lengthOfNote];
+    //     timeIndex += lengthOfNote;
+    // }
     },
     play (soundSequence) {
         const chordMidiNumbers = soundSequence.map((noteName)=>{
@@ -831,12 +1214,15 @@ const soundEngine = {
         sound.volume(0.75);
         chordMidiNumbers.forEach((noteMidiNumber)=>{
             sound.play(noteMidiNumber.toString());
+            mySynth.playNote(noteMidiNumber, {
+                duration: 10
+            });
         });
     }
 };
 app.init();
 
-},{"@tonaljs/tonal":"4q9Lu","@tonaljs/chord":"86fqr","@tonaljs/chord-dictionary":"1dcny","howler":"5Vjgk"}],"4q9Lu":[function(require,module,exports) {
+},{"@tonaljs/tonal":"4q9Lu","@tonaljs/chord":"86fqr","@tonaljs/chord-dictionary":"1dcny","webmidi":"7gVlB","howler":"5Vjgk"}],"4q9Lu":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AbcNotation", ()=>(0, _abcNotationDefault.default));
@@ -4770,7 +5156,3228 @@ var _chordType = require("@tonaljs/chord-type");
 parcelHelpers.exportAll(_chordType, exports);
 var _chordTypeDefault = parcelHelpers.interopDefault(_chordType);
 
-},{"@tonaljs/chord-type":"asSVJ","@parcel/transformer-js/src/esmodule-helpers.js":"kANgE"}],"5Vjgk":[function(require,module,exports) {
+},{"@tonaljs/chord-type":"asSVJ","@parcel/transformer-js/src/esmodule-helpers.js":"kANgE"}],"7gVlB":[function(require,module,exports) {
+/**
+ * WEBMIDI.js v3.1.12
+ * A JavaScript library to kickstart your MIDI projects
+ * https://webmidijs.org
+ * Build generated on November 22nd, 2024.
+ *
+ * © Copyright 2015-2024, Jean-Philippe Côté.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */ var process = require("efe8767325d23004");
+var global = arguments[3];
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: !0
+});
+class EventEmitter {
+    constructor(e1 = !1){
+        this.eventMap = {}, this.eventsSuspended = 1 == e1;
+    }
+    addListener(e1, t1, n1 = {}) {
+        if ("string" == typeof e1 && e1.length < 1 || e1 instanceof String && e1.length < 1 || "string" != typeof e1 && !(e1 instanceof String) && e1 !== EventEmitter.ANY_EVENT) throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");
+        if ("function" != typeof t1) throw new TypeError("The callback must be a function.");
+        const r1 = new Listener(e1, this, t1, n1);
+        return this.eventMap[e1] || (this.eventMap[e1] = []), n1.prepend ? this.eventMap[e1].unshift(r1) : this.eventMap[e1].push(r1), r1;
+    }
+    addOneTimeListener(e1, t1, n1 = {}) {
+        n1.remaining = 1, this.addListener(e1, t1, n1);
+    }
+    static get ANY_EVENT() {
+        return Symbol.for("Any event");
+    }
+    hasListener(e1, t1) {
+        if (void 0 === e1) return !!(this.eventMap[EventEmitter.ANY_EVENT] && this.eventMap[EventEmitter.ANY_EVENT].length > 0) || Object.entries(this.eventMap).some(([, e1])=>e1.length > 0);
+        if (this.eventMap[e1] && this.eventMap[e1].length > 0) {
+            if (t1 instanceof Listener) return this.eventMap[e1].filter((e1)=>e1 === t1).length > 0;
+            if ("function" == typeof t1) return this.eventMap[e1].filter((e1)=>e1.callback === t1).length > 0;
+            return null == t1;
+        }
+        return !1;
+    }
+    get eventNames() {
+        return Object.keys(this.eventMap);
+    }
+    getListeners(e1) {
+        return this.eventMap[e1] || [];
+    }
+    suspendEvent(e1) {
+        this.getListeners(e1).forEach((e1)=>{
+            e1.suspended = !0;
+        });
+    }
+    unsuspendEvent(e1) {
+        this.getListeners(e1).forEach((e1)=>{
+            e1.suspended = !1;
+        });
+    }
+    getListenerCount(e1) {
+        return this.getListeners(e1).length;
+    }
+    emit(e1, ...t1) {
+        if ("string" != typeof e1 && !(e1 instanceof String)) throw new TypeError("The 'event' parameter must be a string.");
+        if (this.eventsSuspended) return;
+        let n1 = [], r1 = this.eventMap[EventEmitter.ANY_EVENT] || [];
+        return this.eventMap[e1] && (r1 = r1.concat(this.eventMap[e1])), r1.forEach((e1)=>{
+            if (e1.suspended) return;
+            let r1 = [
+                ...t1
+            ];
+            Array.isArray(e1.arguments) && (r1 = r1.concat(e1.arguments)), e1.remaining > 0 && (n1.push(e1.callback.apply(e1.context, r1)), e1.count++), --e1.remaining < 1 && e1.remove();
+        }), n1;
+    }
+    removeListener(e1, t1, n1 = {}) {
+        if (void 0 === e1) return void (this.eventMap = {});
+        if (!this.eventMap[e1]) return;
+        let r1 = this.eventMap[e1].filter((e1)=>t1 && e1.callback !== t1 || n1.remaining && n1.remaining !== e1.remaining || n1.context && n1.context !== e1.context);
+        r1.length ? this.eventMap[e1] = r1 : delete this.eventMap[e1];
+    }
+    async waitFor(e1, t1 = {}) {
+        return t1.duration = parseInt(t1.duration), (isNaN(t1.duration) || t1.duration <= 0) && (t1.duration = 1 / 0), new Promise((n1, r1)=>{
+            let i1, s1 = this.addListener(e1, ()=>{
+                clearTimeout(i1), n1();
+            }, {
+                remaining: 1
+            });
+            t1.duration !== 1 / 0 && (i1 = setTimeout(()=>{
+                s1.remove(), r1("The duration expired before the event was emitted.");
+            }, t1.duration));
+        });
+    }
+    get eventCount() {
+        return Object.keys(this.eventMap).length;
+    }
+}
+class Listener {
+    constructor(e1, t1, n1, r1 = {}){
+        if ("string" != typeof e1 && !(e1 instanceof String) && e1 !== EventEmitter.ANY_EVENT) throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");
+        if (!t1) throw new ReferenceError("The 'target' parameter is mandatory.");
+        if ("function" != typeof n1) throw new TypeError("The 'callback' must be a function.");
+        void 0 === r1.arguments || Array.isArray(r1.arguments) || (r1.arguments = [
+            r1.arguments
+        ]), (r1 = Object.assign({
+            context: t1,
+            remaining: 1 / 0,
+            arguments: void 0,
+            duration: 1 / 0
+        }, r1)).duration !== 1 / 0 && setTimeout(()=>this.remove(), r1.duration), this.arguments = r1.arguments, this.callback = n1, this.context = r1.context, this.count = 0, this.event = e1, this.remaining = parseInt(r1.remaining) >= 1 ? parseInt(r1.remaining) : 1 / 0, this.suspended = !1, this.target = t1;
+    }
+    remove() {
+        this.target.removeListener(this.event, this.callback, {
+            context: this.context,
+            remaining: this.remaining
+        });
+    }
+}
+/**
+ * The `Enumerations` class contains enumerations and arrays of elements used throughout the
+ * library. All its properties are static and should be referenced using the class name. For
+ * example: `Enumerations.CHANNEL_MESSAGES`.
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */ class Enumerations {
+    static get MIDI_CHANNEL_MESSAGES() {
+        return this.validation && console.warn("The MIDI_CHANNEL_MESSAGES enum has been deprecated. Use the Enumerations.CHANNEL_MESSAGES enum instead."), Enumerations.CHANNEL_MESSAGES;
+    }
+    static get CHANNEL_MESSAGES() {
+        return {
+            noteoff: 8,
+            noteon: 9,
+            keyaftertouch: 10,
+            controlchange: 11,
+            programchange: 12,
+            channelaftertouch: 13,
+            pitchbend: 14
+        };
+    }
+    static get CHANNEL_NUMBERS() {
+        return [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+        ];
+    }
+    static get MIDI_CHANNEL_NUMBERS() {
+        return this.validation && console.warn("The MIDI_CHANNEL_NUMBERS array has been deprecated. Use the Enumerations.CHANNEL_NUMBERS array instead."), [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+        ];
+    }
+    static get CHANNEL_MODE_MESSAGES() {
+        return {
+            allsoundoff: 120,
+            resetallcontrollers: 121,
+            localcontrol: 122,
+            allnotesoff: 123,
+            omnimodeoff: 124,
+            omnimodeon: 125,
+            monomodeon: 126,
+            polymodeon: 127
+        };
+    }
+    static get MIDI_CHANNEL_MODE_MESSAGES() {
+        return this.validation && console.warn("The MIDI_CHANNEL_MODE_MESSAGES enum has been deprecated. Use the Enumerations.CHANNEL_MODE_MESSAGES enum instead."), Enumerations.CHANNEL_MODE_MESSAGES;
+    }
+    static get MIDI_CONTROL_CHANGE_MESSAGES() {
+        return this.validation && console.warn("The MIDI_CONTROL_CHANGE_MESSAGES enum has been deprecated. Use the Enumerations.CONTROL_CHANGE_MESSAGES array instead."), {
+            bankselectcoarse: 0,
+            modulationwheelcoarse: 1,
+            breathcontrollercoarse: 2,
+            controller3: 3,
+            footcontrollercoarse: 4,
+            portamentotimecoarse: 5,
+            dataentrycoarse: 6,
+            volumecoarse: 7,
+            balancecoarse: 8,
+            controller9: 9,
+            pancoarse: 10,
+            expressioncoarse: 11,
+            effectcontrol1coarse: 12,
+            effectcontrol2coarse: 13,
+            controller14: 14,
+            controller15: 15,
+            generalpurposeslider1: 16,
+            generalpurposeslider2: 17,
+            generalpurposeslider3: 18,
+            generalpurposeslider4: 19,
+            controller20: 20,
+            controller21: 21,
+            controller22: 22,
+            controller23: 23,
+            controller24: 24,
+            controller25: 25,
+            controller26: 26,
+            controller27: 27,
+            controller28: 28,
+            controller29: 29,
+            controller30: 30,
+            controller31: 31,
+            bankselectfine: 32,
+            modulationwheelfine: 33,
+            breathcontrollerfine: 34,
+            controller35: 35,
+            footcontrollerfine: 36,
+            portamentotimefine: 37,
+            dataentryfine: 38,
+            volumefine: 39,
+            balancefine: 40,
+            controller41: 41,
+            panfine: 42,
+            expressionfine: 43,
+            effectcontrol1fine: 44,
+            effectcontrol2fine: 45,
+            controller46: 46,
+            controller47: 47,
+            controller48: 48,
+            controller49: 49,
+            controller50: 50,
+            controller51: 51,
+            controller52: 52,
+            controller53: 53,
+            controller54: 54,
+            controller55: 55,
+            controller56: 56,
+            controller57: 57,
+            controller58: 58,
+            controller59: 59,
+            controller60: 60,
+            controller61: 61,
+            controller62: 62,
+            controller63: 63,
+            holdpedal: 64,
+            portamento: 65,
+            sustenutopedal: 66,
+            softpedal: 67,
+            legatopedal: 68,
+            hold2pedal: 69,
+            soundvariation: 70,
+            resonance: 71,
+            soundreleasetime: 72,
+            soundattacktime: 73,
+            brightness: 74,
+            soundcontrol6: 75,
+            soundcontrol7: 76,
+            soundcontrol8: 77,
+            soundcontrol9: 78,
+            soundcontrol10: 79,
+            generalpurposebutton1: 80,
+            generalpurposebutton2: 81,
+            generalpurposebutton3: 82,
+            generalpurposebutton4: 83,
+            controller84: 84,
+            controller85: 85,
+            controller86: 86,
+            controller87: 87,
+            controller88: 88,
+            controller89: 89,
+            controller90: 90,
+            reverblevel: 91,
+            tremololevel: 92,
+            choruslevel: 93,
+            celestelevel: 94,
+            phaserlevel: 95,
+            databuttonincrement: 96,
+            databuttondecrement: 97,
+            nonregisteredparametercoarse: 98,
+            nonregisteredparameterfine: 99,
+            registeredparametercoarse: 100,
+            registeredparameterfine: 101,
+            controller102: 102,
+            controller103: 103,
+            controller104: 104,
+            controller105: 105,
+            controller106: 106,
+            controller107: 107,
+            controller108: 108,
+            controller109: 109,
+            controller110: 110,
+            controller111: 111,
+            controller112: 112,
+            controller113: 113,
+            controller114: 114,
+            controller115: 115,
+            controller116: 116,
+            controller117: 117,
+            controller118: 118,
+            controller119: 119,
+            allsoundoff: 120,
+            resetallcontrollers: 121,
+            localcontrol: 122,
+            allnotesoff: 123,
+            omnimodeoff: 124,
+            omnimodeon: 125,
+            monomodeon: 126,
+            polymodeon: 127
+        };
+    }
+    static get CONTROL_CHANGE_MESSAGES() {
+        return [
+            {
+                number: 0,
+                name: "bankselectcoarse",
+                description: "Bank Select (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 1,
+                name: "modulationwheelcoarse",
+                description: "Modulation Wheel (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 2,
+                name: "breathcontrollercoarse",
+                description: "Breath Controller (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 3,
+                name: "controller3",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 4,
+                name: "footcontrollercoarse",
+                description: "Foot Controller (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 5,
+                name: "portamentotimecoarse",
+                description: "Portamento Time (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 6,
+                name: "dataentrycoarse",
+                description: "Data Entry (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 7,
+                name: "volumecoarse",
+                description: "Channel Volume (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 8,
+                name: "balancecoarse",
+                description: "Balance (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 9,
+                name: "controller9",
+                description: "Controller 9 (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 10,
+                name: "pancoarse",
+                description: "Pan (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 11,
+                name: "expressioncoarse",
+                description: "Expression Controller (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 12,
+                name: "effectcontrol1coarse",
+                description: "Effect Control 1 (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 13,
+                name: "effectcontrol2coarse",
+                description: "Effect Control 2 (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 14,
+                name: "controller14",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 15,
+                name: "controller15",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 16,
+                name: "generalpurposecontroller1",
+                description: "General Purpose Controller 1 (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 17,
+                name: "generalpurposecontroller2",
+                description: "General Purpose Controller 2 (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 18,
+                name: "generalpurposecontroller3",
+                description: "General Purpose Controller 3 (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 19,
+                name: "generalpurposecontroller4",
+                description: "General Purpose Controller 4 (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 20,
+                name: "controller20",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 21,
+                name: "controller21",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 22,
+                name: "controller22",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 23,
+                name: "controller23",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 24,
+                name: "controller24",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 25,
+                name: "controller25",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 26,
+                name: "controller26",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 27,
+                name: "controller27",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 28,
+                name: "controller28",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 29,
+                name: "controller29",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 30,
+                name: "controller30",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 31,
+                name: "controller31",
+                description: "Undefined",
+                position: "msb"
+            },
+            {
+                number: 32,
+                name: "bankselectfine",
+                description: "Bank Select (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 33,
+                name: "modulationwheelfine",
+                description: "Modulation Wheel (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 34,
+                name: "breathcontrollerfine",
+                description: "Breath Controller (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 35,
+                name: "controller35",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 36,
+                name: "footcontrollerfine",
+                description: "Foot Controller (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 37,
+                name: "portamentotimefine",
+                description: "Portamento Time (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 38,
+                name: "dataentryfine",
+                description: "Data Entry (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 39,
+                name: "channelvolumefine",
+                description: "Channel Volume (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 40,
+                name: "balancefine",
+                description: "Balance (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 41,
+                name: "controller41",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 42,
+                name: "panfine",
+                description: "Pan (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 43,
+                name: "expressionfine",
+                description: "Expression Controller (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 44,
+                name: "effectcontrol1fine",
+                description: "Effect control 1 (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 45,
+                name: "effectcontrol2fine",
+                description: "Effect control 2 (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 46,
+                name: "controller46",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 47,
+                name: "controller47",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 48,
+                name: "controller48",
+                description: "General Purpose Controller 1 (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 49,
+                name: "controller49",
+                description: "General Purpose Controller 2 (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 50,
+                name: "controller50",
+                description: "General Purpose Controller 3 (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 51,
+                name: "controller51",
+                description: "General Purpose Controller 4 (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 52,
+                name: "controller52",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 53,
+                name: "controller53",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 54,
+                name: "controller54",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 55,
+                name: "controller55",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 56,
+                name: "controller56",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 57,
+                name: "controller57",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 58,
+                name: "controller58",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 59,
+                name: "controller59",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 60,
+                name: "controller60",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 61,
+                name: "controller61",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 62,
+                name: "controller62",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 63,
+                name: "controller63",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 64,
+                name: "damperpedal",
+                description: "Damper Pedal On/Off"
+            },
+            {
+                number: 65,
+                name: "portamento",
+                description: "Portamento On/Off"
+            },
+            {
+                number: 66,
+                name: "sostenuto",
+                description: "Sostenuto On/Off"
+            },
+            {
+                number: 67,
+                name: "softpedal",
+                description: "Soft Pedal On/Off"
+            },
+            {
+                number: 68,
+                name: "legatopedal",
+                description: "Legato Pedal On/Off"
+            },
+            {
+                number: 69,
+                name: "hold2",
+                description: "Hold 2 On/Off"
+            },
+            {
+                number: 70,
+                name: "soundvariation",
+                description: "Sound Variation",
+                position: "lsb"
+            },
+            {
+                number: 71,
+                name: "resonance",
+                description: "Resonance",
+                position: "lsb"
+            },
+            {
+                number: 72,
+                name: "releasetime",
+                description: "Release Time",
+                position: "lsb"
+            },
+            {
+                number: 73,
+                name: "attacktime",
+                description: "Attack Time",
+                position: "lsb"
+            },
+            {
+                number: 74,
+                name: "brightness",
+                description: "Brightness",
+                position: "lsb"
+            },
+            {
+                number: 75,
+                name: "decaytime",
+                description: "Decay Time",
+                position: "lsb"
+            },
+            {
+                number: 76,
+                name: "vibratorate",
+                description: "Vibrato Rate",
+                position: "lsb"
+            },
+            {
+                number: 77,
+                name: "vibratodepth",
+                description: "Vibrato Depth",
+                position: "lsb"
+            },
+            {
+                number: 78,
+                name: "vibratodelay",
+                description: "Vibrato Delay",
+                position: "lsb"
+            },
+            {
+                number: 79,
+                name: "controller79",
+                description: "Undefined",
+                position: "lsb"
+            },
+            {
+                number: 80,
+                name: "generalpurposecontroller5",
+                description: "General Purpose Controller 5",
+                position: "lsb"
+            },
+            {
+                number: 81,
+                name: "generalpurposecontroller6",
+                description: "General Purpose Controller 6",
+                position: "lsb"
+            },
+            {
+                number: 82,
+                name: "generalpurposecontroller7",
+                description: "General Purpose Controller 7",
+                position: "lsb"
+            },
+            {
+                number: 83,
+                name: "generalpurposecontroller8",
+                description: "General Purpose Controller 8",
+                position: "lsb"
+            },
+            {
+                number: 84,
+                name: "portamentocontrol",
+                description: "Portamento Control",
+                position: "lsb"
+            },
+            {
+                number: 85,
+                name: "controller85",
+                description: "Undefined"
+            },
+            {
+                number: 86,
+                name: "controller86",
+                description: "Undefined"
+            },
+            {
+                number: 87,
+                name: "controller87",
+                description: "Undefined"
+            },
+            {
+                number: 88,
+                name: "highresolutionvelocityprefix",
+                description: "High Resolution Velocity Prefix",
+                position: "lsb"
+            },
+            {
+                number: 89,
+                name: "controller89",
+                description: "Undefined"
+            },
+            {
+                number: 90,
+                name: "controller90",
+                description: "Undefined"
+            },
+            {
+                number: 91,
+                name: "effect1depth",
+                description: "Effects 1 Depth (Reverb Send Level)"
+            },
+            {
+                number: 92,
+                name: "effect2depth",
+                description: "Effects 2 Depth"
+            },
+            {
+                number: 93,
+                name: "effect3depth",
+                description: "Effects 3 Depth (Chorus Send Level)"
+            },
+            {
+                number: 94,
+                name: "effect4depth",
+                description: "Effects 4 Depth"
+            },
+            {
+                number: 95,
+                name: "effect5depth",
+                description: "Effects 5 Depth"
+            },
+            {
+                number: 96,
+                name: "dataincrement",
+                description: "Data Increment"
+            },
+            {
+                number: 97,
+                name: "datadecrement",
+                description: "Data Decrement"
+            },
+            {
+                number: 98,
+                name: "nonregisteredparameterfine",
+                description: "Non-Registered Parameter Number (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 99,
+                name: "nonregisteredparametercoarse",
+                description: "Non-Registered Parameter Number (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 100,
+                name: "registeredparameterfine",
+                description: "Registered Parameter Number (Fine)",
+                position: "lsb"
+            },
+            {
+                number: 101,
+                name: "registeredparametercoarse",
+                description: "Registered Parameter Number (Coarse)",
+                position: "msb"
+            },
+            {
+                number: 102,
+                name: "controller102",
+                description: "Undefined"
+            },
+            {
+                number: 103,
+                name: "controller103",
+                description: "Undefined"
+            },
+            {
+                number: 104,
+                name: "controller104",
+                description: "Undefined"
+            },
+            {
+                number: 105,
+                name: "controller105",
+                description: "Undefined"
+            },
+            {
+                number: 106,
+                name: "controller106",
+                description: "Undefined"
+            },
+            {
+                number: 107,
+                name: "controller107",
+                description: "Undefined"
+            },
+            {
+                number: 108,
+                name: "controller108",
+                description: "Undefined"
+            },
+            {
+                number: 109,
+                name: "controller109",
+                description: "Undefined"
+            },
+            {
+                number: 110,
+                name: "controller110",
+                description: "Undefined"
+            },
+            {
+                number: 111,
+                name: "controller111",
+                description: "Undefined"
+            },
+            {
+                number: 112,
+                name: "controller112",
+                description: "Undefined"
+            },
+            {
+                number: 113,
+                name: "controller113",
+                description: "Undefined"
+            },
+            {
+                number: 114,
+                name: "controller114",
+                description: "Undefined"
+            },
+            {
+                number: 115,
+                name: "controller115",
+                description: "Undefined"
+            },
+            {
+                number: 116,
+                name: "controller116",
+                description: "Undefined"
+            },
+            {
+                number: 117,
+                name: "controller117",
+                description: "Undefined"
+            },
+            {
+                number: 118,
+                name: "controller118",
+                description: "Undefined"
+            },
+            {
+                number: 119,
+                name: "controller119",
+                description: "Undefined"
+            },
+            {
+                number: 120,
+                name: "allsoundoff",
+                description: "All Sound Off"
+            },
+            {
+                number: 121,
+                name: "resetallcontrollers",
+                description: "Reset All Controllers"
+            },
+            {
+                number: 122,
+                name: "localcontrol",
+                description: "Local Control On/Off"
+            },
+            {
+                number: 123,
+                name: "allnotesoff",
+                description: "All Notes Off"
+            },
+            {
+                number: 124,
+                name: "omnimodeoff",
+                description: "Omni Mode Off"
+            },
+            {
+                number: 125,
+                name: "omnimodeon",
+                description: "Omni Mode On"
+            },
+            {
+                number: 126,
+                name: "monomodeon",
+                description: "Mono Mode On"
+            },
+            {
+                number: 127,
+                name: "polymodeon",
+                description: "Poly Mode On"
+            }
+        ];
+    }
+    static get REGISTERED_PARAMETERS() {
+        return {
+            pitchbendrange: [
+                0,
+                0
+            ],
+            channelfinetuning: [
+                0,
+                1
+            ],
+            channelcoarsetuning: [
+                0,
+                2
+            ],
+            tuningprogram: [
+                0,
+                3
+            ],
+            tuningbank: [
+                0,
+                4
+            ],
+            modulationrange: [
+                0,
+                5
+            ],
+            azimuthangle: [
+                61,
+                0
+            ],
+            elevationangle: [
+                61,
+                1
+            ],
+            gain: [
+                61,
+                2
+            ],
+            distanceratio: [
+                61,
+                3
+            ],
+            maximumdistance: [
+                61,
+                4
+            ],
+            maximumdistancegain: [
+                61,
+                5
+            ],
+            referencedistanceratio: [
+                61,
+                6
+            ],
+            panspreadangle: [
+                61,
+                7
+            ],
+            rollangle: [
+                61,
+                8
+            ]
+        };
+    }
+    static get MIDI_REGISTERED_PARAMETERS() {
+        return this.validation && console.warn("The MIDI_REGISTERED_PARAMETERS enum has been deprecated. Use the Enumerations.REGISTERED_PARAMETERS enum instead."), Enumerations.MIDI_REGISTERED_PARAMETERS;
+    }
+    static get SYSTEM_MESSAGES() {
+        return {
+            sysex: 240,
+            timecode: 241,
+            songposition: 242,
+            songselect: 243,
+            tunerequest: 246,
+            tuningrequest: 246,
+            sysexend: 247,
+            clock: 248,
+            start: 250,
+            continue: 251,
+            stop: 252,
+            activesensing: 254,
+            reset: 255,
+            midimessage: 0,
+            unknownsystemmessage: -1
+        };
+    }
+    static get MIDI_SYSTEM_MESSAGES() {
+        return this.validation && console.warn("The MIDI_SYSTEM_MESSAGES enum has been deprecated. Use the Enumerations.SYSTEM_MESSAGES enum instead."), Enumerations.SYSTEM_MESSAGES;
+    }
+    static get CHANNEL_EVENTS() {
+        return [
+            "noteoff",
+            "controlchange",
+            "noteon",
+            "keyaftertouch",
+            "programchange",
+            "channelaftertouch",
+            "pitchbend",
+            "allnotesoff",
+            "allsoundoff",
+            "localcontrol",
+            "monomode",
+            "omnimode",
+            "resetallcontrollers",
+            "nrpn",
+            "nrpn-dataentrycoarse",
+            "nrpn-dataentryfine",
+            "nrpn-dataincrement",
+            "nrpn-datadecrement",
+            "rpn",
+            "rpn-dataentrycoarse",
+            "rpn-dataentryfine",
+            "rpn-dataincrement",
+            "rpn-datadecrement",
+            "nrpn-databuttonincrement",
+            "nrpn-databuttondecrement",
+            "rpn-databuttonincrement",
+            "rpn-databuttondecrement"
+        ];
+    }
+}
+/**
+ * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
+ *
+ * `Note` objects can be played back on a single channel by calling
+ * [`OutputChannel.playNote()`]{@link OutputChannel#playNote} or, on multiple channels of the same
+ * output, by calling [`Output.playNote()`]{@link Output#playNote}.
+ *
+ * The note has [`attack`](#attack) and [`release`](#release) velocities set at `0.5` by default.
+ * These can be changed by passing in the appropriate option. It is also possible to set a
+ * system-wide default for attack and release velocities by using the
+ * [`WebMidi.defaults`](WebMidi#defaults) property.
+ *
+ * If you prefer to work with raw MIDI values (`0` to `127`), you can use [`rawAttack`](#rawAttack) and
+ * [`rawRelease`](#rawRelease) to both get and set the values.
+ *
+ * The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
+ * when the duration has elapsed by sending a `"noteoff"` event. By default, the duration is set to
+ * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
+ * method such as [`OutputChannel.stopNote()`]{@link OutputChannel#stopNote},
+ * [`Output.stopNote()`]{@link Output#stopNote} or similar.
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */ class Note {
+    constructor(e1, t1 = {}){
+        this.duration = wm.defaults.note.duration, this.attack = wm.defaults.note.attack, this.release = wm.defaults.note.release, null != t1.duration && (this.duration = t1.duration), null != t1.attack && (this.attack = t1.attack), null != t1.rawAttack && (this.attack = Utilities.from7bitToFloat(t1.rawAttack)), null != t1.release && (this.release = t1.release), null != t1.rawRelease && (this.release = Utilities.from7bitToFloat(t1.rawRelease)), Number.isInteger(e1) ? this.identifier = Utilities.toNoteIdentifier(e1) : this.identifier = e1;
+    }
+    get identifier() {
+        return this._name + (this._accidental || "") + this._octave;
+    }
+    set identifier(e1) {
+        const t1 = Utilities.getNoteDetails(e1);
+        if (wm.validation && !e1) throw new Error("Invalid note identifier");
+        this._name = t1.name, this._accidental = t1.accidental, this._octave = t1.octave;
+    }
+    get name() {
+        return this._name;
+    }
+    set name(e1) {
+        if (wm.validation && (e1 = e1.toUpperCase(), ![
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "A",
+            "B"
+        ].includes(e1))) throw new Error("Invalid name value");
+        this._name = e1;
+    }
+    get accidental() {
+        return this._accidental;
+    }
+    set accidental(e1) {
+        if (wm.validation && (e1 = e1.toLowerCase(), ![
+            "#",
+            "##",
+            "b",
+            "bb"
+        ].includes(e1))) throw new Error("Invalid accidental value");
+        this._accidental = e1;
+    }
+    get octave() {
+        return this._octave;
+    }
+    set octave(e1) {
+        if (wm.validation && (e1 = parseInt(e1), isNaN(e1))) throw new Error("Invalid octave value");
+        this._octave = e1;
+    }
+    get duration() {
+        return this._duration;
+    }
+    set duration(e1) {
+        if (wm.validation && (e1 = parseFloat(e1), isNaN(e1) || null === e1 || e1 < 0)) throw new RangeError("Invalid duration value.");
+        this._duration = e1;
+    }
+    get attack() {
+        return this._attack;
+    }
+    set attack(e1) {
+        if (wm.validation && (e1 = parseFloat(e1), isNaN(e1) || !(e1 >= 0 && e1 <= 1))) throw new RangeError("Invalid attack value.");
+        this._attack = e1;
+    }
+    get release() {
+        return this._release;
+    }
+    set release(e1) {
+        if (wm.validation && (e1 = parseFloat(e1), isNaN(e1) || !(e1 >= 0 && e1 <= 1))) throw new RangeError("Invalid release value.");
+        this._release = e1;
+    }
+    get rawAttack() {
+        return Utilities.fromFloatTo7Bit(this._attack);
+    }
+    set rawAttack(e1) {
+        this._attack = Utilities.from7bitToFloat(e1);
+    }
+    get rawRelease() {
+        return Utilities.fromFloatTo7Bit(this._release);
+    }
+    set rawRelease(e1) {
+        this._release = Utilities.from7bitToFloat(e1);
+    }
+    get number() {
+        return Utilities.toNoteNumber(this.identifier);
+    }
+    getOffsetNumber(e1 = 0, t1 = 0) {
+        return wm.validation && (e1 = parseInt(e1) || 0, t1 = parseInt(t1) || 0), Math.min(Math.max(this.number + 12 * e1 + t1, 0), 127);
+    }
+}
+/**
+ * The `Utilities` class contains general-purpose utility methods. All methods are static and
+ * should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */ class Utilities {
+    /**
+   * Returns a MIDI note number matching the identifier passed in the form of a string. The
+   * identifier must include the octave number. The identifier also optionally include a sharp (#),
+   * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
+   * identifiers: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+   *
+   * When converting note identifiers to numbers, C4 is considered to be middle C (MIDI note number
+   * 60) as per the scientific pitch notation standard.
+   *
+   * The resulting note number can be offset by using the `octaveOffset` parameter.
+   *
+   * @param identifier {string} The identifier in the form of a letter, followed by an optional "#",
+   * "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
+   * Abb4, B##6, etc.
+   *
+   * @param {number} [octaveOffset=0] A integer to offset the octave by.
+   *
+   * @returns {number} The MIDI note number (an integer between 0 and 127).
+   *
+   * @throws RangeError Invalid 'octaveOffset' value
+   *
+   * @throws TypeError Invalid note identifier
+   *
+   * @license Apache-2.0
+   * @since 3.0.0
+   * @static
+   */ static toNoteNumber(e1, t1 = 0) {
+        if (t1 = null == t1 ? 0 : parseInt(t1), isNaN(t1)) throw new RangeError("Invalid 'octaveOffset' value");
+        "string" != typeof e1 && (e1 = "");
+        const n1 = this.getNoteDetails(e1);
+        if (!n1) throw new TypeError("Invalid note identifier");
+        let r1 = 12 * (n1.octave + 1 + t1);
+        if (r1 += ({
+            C: 0,
+            D: 2,
+            E: 4,
+            F: 5,
+            G: 7,
+            A: 9,
+            B: 11
+        })[n1.name], n1.accidental && (n1.accidental.startsWith("b") ? r1 -= n1.accidental.length : r1 += n1.accidental.length), r1 < 0 || r1 > 127) throw new RangeError("Invalid octaveOffset value");
+        return r1;
+    }
+    static getNoteDetails(e1) {
+        Number.isInteger(e1) && (e1 = this.toNoteIdentifier(e1));
+        const t1 = e1.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
+        if (!t1) throw new TypeError("Invalid note identifier");
+        const n1 = t1[1].toUpperCase(), r1 = parseInt(t1[3]);
+        let i1 = t1[2].toLowerCase();
+        i1 = "" === i1 ? void 0 : i1;
+        return {
+            accidental: i1,
+            identifier: n1 + (i1 || "") + r1,
+            name: n1,
+            octave: r1
+        };
+    }
+    static sanitizeChannels(e1) {
+        let t1;
+        if (wm.validation) {
+            if ("all" === e1) t1 = [
+                "all"
+            ];
+            else if ("none" === e1) return [];
+        }
+        return t1 = Array.isArray(e1) ? e1 : [
+            e1
+        ], t1.indexOf("all") > -1 && (t1 = Enumerations.MIDI_CHANNEL_NUMBERS), t1.map(function(e1) {
+            return parseInt(e1);
+        }).filter(function(e1) {
+            return e1 >= 1 && e1 <= 16;
+        });
+    }
+    static toTimestamp(e1) {
+        let t1 = !1;
+        const n1 = parseFloat(e1);
+        return !isNaN(n1) && ("string" == typeof e1 && "+" === e1.substring(0, 1) ? n1 >= 0 && (t1 = wm.time + n1) : n1 >= 0 && (t1 = n1), t1);
+    }
+    static guessNoteNumber(e1, t1) {
+        t1 = parseInt(t1) || 0;
+        let n1 = !1;
+        if (Number.isInteger(e1) && e1 >= 0 && e1 <= 127) n1 = parseInt(e1);
+        else if (parseInt(e1) >= 0 && parseInt(e1) <= 127) n1 = parseInt(e1);
+        else if ("string" == typeof e1 || e1 instanceof String) try {
+            n1 = this.toNoteNumber(e1.trim(), t1);
+        } catch (e1) {
+            return !1;
+        }
+        return n1;
+    }
+    static toNoteIdentifier(e1, t1) {
+        if (e1 = parseInt(e1), isNaN(e1) || e1 < 0 || e1 > 127) throw new RangeError("Invalid note number");
+        if (t1 = null == t1 ? 0 : parseInt(t1), isNaN(t1)) throw new RangeError("Invalid octaveOffset value");
+        const n1 = Math.floor(e1 / 12 - 1) + t1;
+        return [
+            "C",
+            "C#",
+            "D",
+            "D#",
+            "E",
+            "F",
+            "F#",
+            "G",
+            "G#",
+            "A",
+            "A#",
+            "B"
+        ][e1 % 12] + n1.toString();
+    }
+    static buildNote(e1, t1 = {}) {
+        if (t1.octaveOffset = parseInt(t1.octaveOffset) || 0, e1 instanceof Note) return e1;
+        let n1 = this.guessNoteNumber(e1, t1.octaveOffset);
+        if (!1 === n1) throw new TypeError(`The input could not be parsed as a note (${e1})`);
+        return t1.octaveOffset = void 0, new Note(n1, t1);
+    }
+    static buildNoteArray(e1, t1 = {}) {
+        let n1 = [];
+        return Array.isArray(e1) || (e1 = [
+            e1
+        ]), e1.forEach((e1)=>{
+            n1.push(this.buildNote(e1, t1));
+        }), n1;
+    }
+    static from7bitToFloat(e1) {
+        return e1 === 1 / 0 && (e1 = 127), e1 = parseInt(e1) || 0, Math.min(Math.max(e1 / 127, 0), 1);
+    }
+    static fromFloatTo7Bit(e1) {
+        return e1 === 1 / 0 && (e1 = 1), e1 = parseFloat(e1) || 0, Math.min(Math.max(Math.round(127 * e1), 0), 127);
+    }
+    static fromMsbLsbToFloat(e1, t1 = 0) {
+        wm.validation && (e1 = Math.min(Math.max(parseInt(e1) || 0, 0), 127), t1 = Math.min(Math.max(parseInt(t1) || 0, 0), 127));
+        const n1 = ((e1 << 7) + t1) / 16383;
+        return Math.min(Math.max(n1, 0), 1);
+    }
+    static fromFloatToMsbLsb(e1) {
+        wm.validation && (e1 = Math.min(Math.max(parseFloat(e1) || 0, 0), 1));
+        const t1 = Math.round(16383 * e1);
+        return {
+            msb: t1 >> 7,
+            lsb: 127 & t1
+        };
+    }
+    static offsetNumber(e1, t1 = 0, n1 = 0) {
+        if (wm.validation) {
+            if (e1 = parseInt(e1), isNaN(e1)) throw new Error("Invalid note number");
+            t1 = parseInt(t1) || 0, n1 = parseInt(n1) || 0;
+        }
+        return Math.min(Math.max(e1 + 12 * t1 + n1, 0), 127);
+    }
+    static getPropertyByValue(e1, t1) {
+        return Object.keys(e1).find((n1)=>e1[n1] === t1);
+    }
+    static getCcNameByNumber(e1) {
+        if (!wm.validation || (e1 = parseInt(e1)) >= 0 && e1 <= 127) return Enumerations.CONTROL_CHANGE_MESSAGES[e1].name;
+    }
+    static getCcNumberByName(e1) {
+        let t1 = Enumerations.CONTROL_CHANGE_MESSAGES.find((t1)=>t1.name === e1);
+        return t1 ? t1.number : Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[e1];
+    }
+    static getChannelModeByNumber(e1) {
+        if (!(e1 >= 120 && e1 <= 127)) return !1;
+        for(let t1 in Enumerations.CHANNEL_MODE_MESSAGES)if (Enumerations.CHANNEL_MODE_MESSAGES.hasOwnProperty(t1) && e1 === Enumerations.CHANNEL_MODE_MESSAGES[t1]) return t1;
+        return !1;
+    }
+    static get isNode() {
+        return "undefined" != typeof process && null != process.versions && null != process.versions.node;
+    }
+    static get isBrowser() {
+        return "undefined" != typeof window && void 0 !== window.document;
+    }
+}
+/**
+ * The `OutputChannel` class represents a single output MIDI channel. `OutputChannel` objects are
+ * provided by an [`Output`](Output) port which, itself, is made available by a device. The
+ * `OutputChannel` object is derived from the host's MIDI subsystem and should not be instantiated
+ * directly.
+ *
+ * All 16 `OutputChannel` objects can be found inside the parent output's
+ * [`channels`]{@link Output#channels} property.
+ *
+ * @param {Output} output The [`Output`](Output) this channel belongs to.
+ * @param {number} number The MIDI channel number (`1` - `16`).
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
+ * @since 3.0.0
+ */ class OutputChannel extends EventEmitter {
+    constructor(e1, t1){
+        super(), this._output = e1, this._number = t1, this._octaveOffset = 0;
+    }
+    destroy() {
+        this._output = null, this._number = null, this._octaveOffset = 0, this.removeListener();
+    }
+    send(e1, t1 = {
+        time: 0
+    }) {
+        return this.output.send(e1, t1), this;
+    }
+    sendKeyAftertouch(e1, t1, n1 = {}) {
+        if (wm.validation) {
+            if (n1.useRawValue && (n1.rawValue = n1.useRawValue), isNaN(parseFloat(t1))) throw new RangeError("Invalid key aftertouch value.");
+            if (n1.rawValue) {
+                if (!(t1 >= 0 && t1 <= 127 && Number.isInteger(t1))) throw new RangeError("Key aftertouch raw value must be an integer between 0 and 127.");
+            } else if (!(t1 >= 0 && t1 <= 1)) throw new RangeError("Key aftertouch value must be a float between 0 and 1.");
+        }
+        n1.rawValue || (t1 = Utilities.fromFloatTo7Bit(t1));
+        const r1 = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+        return Array.isArray(e1) || (e1 = [
+            e1
+        ]), Utilities.buildNoteArray(e1).forEach((e1)=>{
+            this.send([
+                (Enumerations.CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
+                e1.getOffsetNumber(r1),
+                t1
+            ], {
+                time: Utilities.toTimestamp(n1.time)
+            });
+        }), this;
+    }
+    /**
+   * Sends a MIDI **control change** message to the channel at the scheduled time. The control
+   * change message to send can be specified numerically (`0` to `127`) or by using one of the
+   * following common names:
+   *
+   * | Number | Name                          |
+   * |--------|-------------------------------|
+   * | 0      |`bankselectcoarse`             |
+   * | 1      |`modulationwheelcoarse`        |
+   * | 2      |`breathcontrollercoarse`       |
+   * | 4      |`footcontrollercoarse`         |
+   * | 5      |`portamentotimecoarse`         |
+   * | 6      |`dataentrycoarse`              |
+   * | 7      |`volumecoarse`                 |
+   * | 8      |`balancecoarse`                |
+   * | 10     |`pancoarse`                    |
+   * | 11     |`expressioncoarse`             |
+   * | 12     |`effectcontrol1coarse`         |
+   * | 13     |`effectcontrol2coarse`         |
+   * | 18     |`generalpurposeslider3`        |
+   * | 19     |`generalpurposeslider4`        |
+   * | 32     |`bankselectfine`               |
+   * | 33     |`modulationwheelfine`          |
+   * | 34     |`breathcontrollerfine`         |
+   * | 36     |`footcontrollerfine`           |
+   * | 37     |`portamentotimefine`           |
+   * | 38     |`dataentryfine`                |
+   * | 39     |`volumefine`                   |
+   * | 40     |`balancefine`                  |
+   * | 42     |`panfine`                      |
+   * | 43     |`expressionfine`               |
+   * | 44     |`effectcontrol1fine`           |
+   * | 45     |`effectcontrol2fine`           |
+   * | 64     |`holdpedal`                    |
+   * | 65     |`portamento`                   |
+   * | 66     |`sustenutopedal`               |
+   * | 67     |`softpedal`                    |
+   * | 68     |`legatopedal`                  |
+   * | 69     |`hold2pedal`                   |
+   * | 70     |`soundvariation`               |
+   * | 71     |`resonance`                    |
+   * | 72     |`soundreleasetime`             |
+   * | 73     |`soundattacktime`              |
+   * | 74     |`brightness`                   |
+   * | 75     |`soundcontrol6`                |
+   * | 76     |`soundcontrol7`                |
+   * | 77     |`soundcontrol8`                |
+   * | 78     |`soundcontrol9`                |
+   * | 79     |`soundcontrol10`               |
+   * | 80     |`generalpurposebutton1`        |
+   * | 81     |`generalpurposebutton2`        |
+   * | 82     |`generalpurposebutton3`        |
+   * | 83     |`generalpurposebutton4`        |
+   * | 91     |`reverblevel`                  |
+   * | 92     |`tremololevel`                 |
+   * | 93     |`choruslevel`                  |
+   * | 94     |`celestelevel`                 |
+   * | 95     |`phaserlevel`                  |
+   * | 96     |`dataincrement`                |
+   * | 97     |`datadecrement`                |
+   * | 98     |`nonregisteredparametercoarse` |
+   * | 99     |`nonregisteredparameterfine`   |
+   * | 100    |`registeredparametercoarse`    |
+   * | 101    |`registeredparameterfine`      |
+   * | 120    |`allsoundoff`                  |
+   * | 121    |`resetallcontrollers`          |
+   * | 122    |`localcontrol`                 |
+   * | 123    |`allnotesoff`                  |
+   * | 124    |`omnimodeoff`                  |
+   * | 125    |`omnimodeon`                   |
+   * | 126    |`monomodeon`                   |
+   * | 127    |`polymodeon`                   |
+   *
+   * As you can see above, not all control change message have a matching name. This does not mean
+   * you cannot use the others. It simply means you will need to use their number
+   * (`0` to `127`) instead of their name. While you can still use them, numbers `120` to `127` are
+   * usually reserved for *channel mode* messages. See
+   * [`sendChannelMode()`]{@link OutputChannel#sendChannelMode} method for more info.
+   *
+   * To view a detailed list of all available **control change** messages, please consult "Table 3 -
+   * Control Change Messages" from the [MIDI Messages](
+   * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
+   * specification.
+   *
+   * **Note**: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1
+   * (`modulationwheelcoarse`) can be accompanied by a second control change message for
+   * `modulationwheelfine` to achieve a greater level of precision. if you want to specify both MSB
+   * and LSB for messages between `0` and `31`, you can do so by passing a 2-value array as the
+   * second parameter.
+   *
+   * @param {number|string} controller The MIDI controller name or number (`0` - `127`).
+   *
+   * @param {number|number[]} value The value to send (0-127). You can also use a two-position array
+   * for controllers 0 to 31. In this scenario, the first value will be sent as usual and the second
+   * value will be sent to the matching LSB controller (which is obtained by adding 32 to the first
+   * controller)
+   *
+   * @param {object} [options={}]
+   *
+   * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+   * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} Controller numbers must be between 0 and 127.
+   * @throws {RangeError} Invalid controller name.
+   * @throws {TypeError} The value array must have a length of 2.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+   *
+   * @license Apache-2.0
+   * @since 3.0.0
+   */ sendControlChange(e1, t1, n1 = {}) {
+        if ("string" == typeof e1 && (e1 = Utilities.getCcNumberByName(e1)), Array.isArray(t1) || (t1 = [
+            t1
+        ]), wm.validation) {
+            if (void 0 === e1) throw new TypeError("Control change must be identified with a valid name or an integer between 0 and 127.");
+            if (!Number.isInteger(e1) || !(e1 >= 0 && e1 <= 127)) throw new TypeError("Control change number must be an integer between 0 and 127.");
+            if (2 === (t1 = t1.map((e1)=>{
+                const t1 = Math.min(Math.max(parseInt(e1), 0), 127);
+                if (isNaN(t1)) throw new TypeError("Values must be integers between 0 and 127");
+                return t1;
+            })).length && e1 >= 32) throw new TypeError("To use a value array, the controller must be between 0 and 31");
+        }
+        return t1.forEach((r1, i1)=>{
+            this.send([
+                (Enumerations.CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+                e1 + 32 * i1,
+                t1[i1]
+            ], {
+                time: Utilities.toTimestamp(n1.time)
+            });
+        }), this;
+    }
+    _selectNonRegisteredParameter(e1, t1 = {}) {
+        return this.sendControlChange(99, e1[0], t1), this.sendControlChange(98, e1[1], t1), this;
+    }
+    _deselectRegisteredParameter(e1 = {}) {
+        return this.sendControlChange(101, 127, e1), this.sendControlChange(100, 127, e1), this;
+    }
+    _deselectNonRegisteredParameter(e1 = {}) {
+        return this.sendControlChange(101, 127, e1), this.sendControlChange(100, 127, e1), this;
+    }
+    _selectRegisteredParameter(e1, t1 = {}) {
+        return this.sendControlChange(101, e1[0], t1), this.sendControlChange(100, e1[1], t1), this;
+    }
+    _setCurrentParameter(e1, t1 = {}) {
+        return e1 = [].concat(e1), this.sendControlChange(6, e1[0], t1), e1.length < 2 || this.sendControlChange(38, e1[1], t1), this;
+    }
+    sendRpnDecrement(e1, t1 = {}) {
+        if (Array.isArray(e1) || (e1 = Enumerations.REGISTERED_PARAMETERS[e1]), wm.validation) {
+            if (void 0 === e1) throw new TypeError("The specified registered parameter is invalid.");
+            let t1 = !1;
+            if (Object.getOwnPropertyNames(Enumerations.REGISTERED_PARAMETERS).forEach((n1)=>{
+                Enumerations.REGISTERED_PARAMETERS[n1][0] === e1[0] && Enumerations.REGISTERED_PARAMETERS[n1][1] === e1[1] && (t1 = !0);
+            }), !t1) throw new TypeError("The specified registered parameter is invalid.");
+        }
+        return this._selectRegisteredParameter(e1, t1), this.sendControlChange(97, 0, t1), this._deselectRegisteredParameter(t1), this;
+    }
+    sendRpnIncrement(e1, t1 = {}) {
+        if (Array.isArray(e1) || (e1 = Enumerations.REGISTERED_PARAMETERS[e1]), wm.validation) {
+            if (void 0 === e1) throw new TypeError("The specified registered parameter is invalid.");
+            let t1 = !1;
+            if (Object.getOwnPropertyNames(Enumerations.REGISTERED_PARAMETERS).forEach((n1)=>{
+                Enumerations.REGISTERED_PARAMETERS[n1][0] === e1[0] && Enumerations.REGISTERED_PARAMETERS[n1][1] === e1[1] && (t1 = !0);
+            }), !t1) throw new TypeError("The specified registered parameter is invalid.");
+        }
+        return this._selectRegisteredParameter(e1, t1), this.sendControlChange(96, 0, t1), this._deselectRegisteredParameter(t1), this;
+    }
+    playNote(e1, t1 = {}) {
+        this.sendNoteOn(e1, t1);
+        const n1 = Array.isArray(e1) ? e1 : [
+            e1
+        ];
+        for (let e1 of n1)if (parseInt(e1.duration) > 0) {
+            const n1 = {
+                time: (Utilities.toTimestamp(t1.time) || wm.time) + parseInt(e1.duration),
+                release: e1.release,
+                rawRelease: e1.rawRelease
+            };
+            this.sendNoteOff(e1, n1);
+        } else if (parseInt(t1.duration) > 0) {
+            const n1 = {
+                time: (Utilities.toTimestamp(t1.time) || wm.time) + parseInt(t1.duration),
+                release: t1.release,
+                rawRelease: t1.rawRelease
+            };
+            this.sendNoteOff(e1, n1);
+        }
+        return this;
+    }
+    sendNoteOff(e1, t1 = {}) {
+        if (wm.validation) {
+            if (null != t1.rawRelease && !(t1.rawRelease >= 0 && t1.rawRelease <= 127)) throw new RangeError("The 'rawRelease' option must be an integer between 0 and 127");
+            if (null != t1.release && !(t1.release >= 0 && t1.release <= 1)) throw new RangeError("The 'release' option must be an number between 0 and 1");
+            t1.rawVelocity && (t1.rawRelease = t1.velocity, console.warn("The 'rawVelocity' option is deprecated. Use 'rawRelease' instead.")), t1.velocity && (t1.release = t1.velocity, console.warn("The 'velocity' option is deprecated. Use 'attack' instead."));
+        }
+        let n1 = 64;
+        null != t1.rawRelease ? n1 = t1.rawRelease : isNaN(t1.release) || (n1 = Math.round(127 * t1.release));
+        const r1 = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+        return Utilities.buildNoteArray(e1, {
+            rawRelease: parseInt(n1)
+        }).forEach((e1)=>{
+            this.send([
+                (Enumerations.CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
+                e1.getOffsetNumber(r1),
+                e1.rawRelease
+            ], {
+                time: Utilities.toTimestamp(t1.time)
+            });
+        }), this;
+    }
+    stopNote(e1, t1 = {}) {
+        return this.sendNoteOff(e1, t1);
+    }
+    sendNoteOn(e1, t1 = {}) {
+        if (wm.validation) {
+            if (null != t1.rawAttack && !(t1.rawAttack >= 0 && t1.rawAttack <= 127)) throw new RangeError("The 'rawAttack' option must be an integer between 0 and 127");
+            if (null != t1.attack && !(t1.attack >= 0 && t1.attack <= 1)) throw new RangeError("The 'attack' option must be an number between 0 and 1");
+            t1.rawVelocity && (t1.rawAttack = t1.velocity, t1.rawRelease = t1.release, console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease'.")), t1.velocity && (t1.attack = t1.velocity, console.warn("The 'velocity' option is deprecated. Use 'attack' instead."));
+        }
+        let n1 = 64;
+        null != t1.rawAttack ? n1 = t1.rawAttack : isNaN(t1.attack) || (n1 = Math.round(127 * t1.attack));
+        const r1 = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+        return Utilities.buildNoteArray(e1, {
+            rawAttack: n1
+        }).forEach((e1)=>{
+            this.send([
+                (Enumerations.CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
+                e1.getOffsetNumber(r1),
+                e1.rawAttack
+            ], {
+                time: Utilities.toTimestamp(t1.time)
+            });
+        }), this;
+    }
+    sendChannelMode(e1, t1 = 0, n1 = {}) {
+        if ("string" == typeof e1 && (e1 = Enumerations.CHANNEL_MODE_MESSAGES[e1]), wm.validation) {
+            if (void 0 === e1) throw new TypeError("Invalid channel mode message name or number.");
+            if (isNaN(e1) || !(e1 >= 120 && e1 <= 127)) throw new TypeError("Invalid channel mode message number.");
+            if (isNaN(parseInt(t1)) || t1 < 0 || t1 > 127) throw new RangeError("Value must be an integer between 0 and 127.");
+        }
+        return this.send([
+            (Enumerations.CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+            e1,
+            t1
+        ], {
+            time: Utilities.toTimestamp(n1.time)
+        }), this;
+    }
+    sendOmniMode(e1, t1 = {}) {
+        return void 0 === e1 || e1 ? this.sendChannelMode("omnimodeon", 0, t1) : this.sendChannelMode("omnimodeoff", 0, t1), this;
+    }
+    sendChannelAftertouch(e1, t1 = {}) {
+        if (wm.validation) {
+            if (isNaN(parseFloat(e1))) throw new RangeError("Invalid channel aftertouch value.");
+            if (t1.rawValue) {
+                if (!(e1 >= 0 && e1 <= 127 && Number.isInteger(e1))) throw new RangeError("Channel aftertouch raw value must be an integer between 0 and 127.");
+            } else if (!(e1 >= 0 && e1 <= 1)) throw new RangeError("Channel aftertouch value must be a float between 0 and 1.");
+        }
+        return t1.rawValue || (e1 = Utilities.fromFloatTo7Bit(e1)), this.send([
+            (Enumerations.CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
+            Math.round(e1)
+        ], {
+            time: Utilities.toTimestamp(t1.time)
+        }), this;
+    }
+    sendMasterTuning(e1, t1 = {}) {
+        if (e1 = parseFloat(e1) || 0, wm.validation && !(e1 > -65 && e1 < 64)) throw new RangeError("The value must be a decimal number larger than -65 and smaller than 64.");
+        let n1 = Math.floor(e1) + 64, r1 = e1 - Math.floor(e1);
+        r1 = Math.round((r1 + 1) / 2 * 16383);
+        let i1 = r1 >> 7 & 127, s1 = 127 & r1;
+        return this.sendRpnValue("channelcoarsetuning", n1, t1), this.sendRpnValue("channelfinetuning", [
+            i1,
+            s1
+        ], t1), this;
+    }
+    sendModulationRange(e1, t1, n1 = {}) {
+        if (wm.validation) {
+            if (!Number.isInteger(e1) || !(e1 >= 0 && e1 <= 127)) throw new RangeError("The semitones value must be an integer between 0 and 127.");
+            if (!(null == t1 || Number.isInteger(t1) && t1 >= 0 && t1 <= 127)) throw new RangeError("If specified, the cents value must be an integer between 0 and 127.");
+        }
+        return t1 >= 0 && t1 <= 127 || (t1 = 0), this.sendRpnValue("modulationrange", [
+            e1,
+            t1
+        ], n1), this;
+    }
+    sendNrpnValue(e1, t1, n1 = {}) {
+        if (t1 = [].concat(t1), wm.validation) {
+            if (!Array.isArray(e1) || !Number.isInteger(e1[0]) || !Number.isInteger(e1[1])) throw new TypeError("The specified NRPN is invalid.");
+            if (!(e1[0] >= 0 && e1[0] <= 127)) throw new RangeError("The first byte of the NRPN must be between 0 and 127.");
+            if (!(e1[1] >= 0 && e1[1] <= 127)) throw new RangeError("The second byte of the NRPN must be between 0 and 127.");
+            t1.forEach((e1)=>{
+                if (!(e1 >= 0 && e1 <= 127)) throw new RangeError("The data bytes of the NRPN must be between 0 and 127.");
+            });
+        }
+        return this._selectNonRegisteredParameter(e1, n1), this._setCurrentParameter(t1, n1), this._deselectNonRegisteredParameter(n1), this;
+    }
+    sendPitchBend(e1, t1 = {}) {
+        if (wm.validation) {
+            if (t1.rawValue && Array.isArray(e1)) {
+                if (!(e1[0] >= 0 && e1[0] <= 127)) throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+                if (!(e1[1] >= 0 && e1[1] <= 127)) throw new RangeError("The pitch bend LSB must be an integer between 0 and 127.");
+            } else if (t1.rawValue && !Array.isArray(e1)) {
+                if (!(e1 >= 0 && e1 <= 127)) throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+            } else {
+                if (isNaN(e1) || null === e1) throw new RangeError("Invalid pitch bend value.");
+                if (!(e1 >= -1 && e1 <= 1)) throw new RangeError("The pitch bend value must be a float between -1 and 1.");
+            }
+        }
+        let n1 = 0, r1 = 0;
+        if (t1.rawValue && Array.isArray(e1)) n1 = e1[0], r1 = e1[1];
+        else if (t1.rawValue && !Array.isArray(e1)) n1 = e1;
+        else {
+            const t1 = Utilities.fromFloatToMsbLsb((e1 + 1) / 2);
+            n1 = t1.msb, r1 = t1.lsb;
+        }
+        return this.send([
+            (Enumerations.CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
+            r1,
+            n1
+        ], {
+            time: Utilities.toTimestamp(t1.time)
+        }), this;
+    }
+    sendPitchBendRange(e1, t1, n1 = {}) {
+        if (wm.validation) {
+            if (!Number.isInteger(e1) || !(e1 >= 0 && e1 <= 127)) throw new RangeError("The semitones value must be an integer between 0 and 127.");
+            if (!Number.isInteger(t1) || !(t1 >= 0 && t1 <= 127)) throw new RangeError("The cents value must be an integer between 0 and 127.");
+        }
+        return this.sendRpnValue("pitchbendrange", [
+            e1,
+            t1
+        ], n1), this;
+    }
+    sendProgramChange(e1, t1 = {}) {
+        if (e1 = parseInt(e1) || 0, wm.validation && !(e1 >= 0 && e1 <= 127)) throw new RangeError("The program number must be between 0 and 127.");
+        return this.send([
+            (Enumerations.CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
+            e1
+        ], {
+            time: Utilities.toTimestamp(t1.time)
+        }), this;
+    }
+    sendRpnValue(e1, t1, n1 = {}) {
+        if (Array.isArray(e1) || (e1 = Enumerations.REGISTERED_PARAMETERS[e1]), wm.validation) {
+            if (!Number.isInteger(e1[0]) || !Number.isInteger(e1[1])) throw new TypeError("The specified NRPN is invalid.");
+            if (!(e1[0] >= 0 && e1[0] <= 127)) throw new RangeError("The first byte of the RPN must be between 0 and 127.");
+            if (!(e1[1] >= 0 && e1[1] <= 127)) throw new RangeError("The second byte of the RPN must be between 0 and 127.");
+            [].concat(t1).forEach((e1)=>{
+                if (!(e1 >= 0 && e1 <= 127)) throw new RangeError("The data bytes of the RPN must be between 0 and 127.");
+            });
+        }
+        return this._selectRegisteredParameter(e1, n1), this._setCurrentParameter(t1, n1), this._deselectRegisteredParameter(n1), this;
+    }
+    sendTuningBank(e1, t1 = {}) {
+        if (wm.validation && (!Number.isInteger(e1) || !(e1 >= 0 && e1 <= 127))) throw new RangeError("The tuning bank number must be between 0 and 127.");
+        return this.sendRpnValue("tuningbank", e1, t1), this;
+    }
+    sendTuningProgram(e1, t1 = {}) {
+        if (wm.validation && (!Number.isInteger(e1) || !(e1 >= 0 && e1 <= 127))) throw new RangeError("The tuning program number must be between 0 and 127.");
+        return this.sendRpnValue("tuningprogram", e1, t1), this;
+    }
+    sendLocalControl(e1, t1 = {}) {
+        return e1 ? this.sendChannelMode("localcontrol", 127, t1) : this.sendChannelMode("localcontrol", 0, t1);
+    }
+    sendAllNotesOff(e1 = {}) {
+        return this.sendChannelMode("allnotesoff", 0, e1);
+    }
+    sendAllSoundOff(e1 = {}) {
+        return this.sendChannelMode("allsoundoff", 0, e1);
+    }
+    sendResetAllControllers(e1 = {}) {
+        return this.sendChannelMode("resetallcontrollers", 0, e1);
+    }
+    sendPolyphonicMode(e1, t1 = {}) {
+        return "mono" === e1 ? this.sendChannelMode("monomodeon", 0, t1) : this.sendChannelMode("polymodeon", 0, t1);
+    }
+    get octaveOffset() {
+        return this._octaveOffset;
+    }
+    set octaveOffset(e1) {
+        if (this.validation && (e1 = parseInt(e1), isNaN(e1))) throw new TypeError("The 'octaveOffset' property must be an integer.");
+        this._octaveOffset = e1;
+    }
+    get output() {
+        return this._output;
+    }
+    get number() {
+        return this._number;
+    }
+}
+/**
+ * The `Output` class represents a single MIDI output port (not to be confused with a MIDI channel).
+ * A port is made available by a MIDI device. A MIDI device can advertise several input and output
+ * ports. Each port has 16 MIDI channels which can be accessed via the [`channels`](#channels)
+ * property.
+ *
+ * The `Output` object is automatically instantiated by the library according to the host's MIDI
+ * subsystem and should not be directly instantiated.
+ *
+ * You can access all available `Output` objects by referring to the
+ * [`WebMidi.outputs`](WebMidi#outputs) array or by using methods such as
+ * [`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
+ * [`WebMidi.getOutputById()`](WebMidi#getOutputById).
+ *
+ * @fires Output#opened
+ * @fires Output#disconnected
+ * @fires Output#closed
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
+ */ class Output extends EventEmitter {
+    constructor(e1){
+        super(), this._midiOutput = e1, this._octaveOffset = 0, this.channels = [];
+        for(let e1 = 1; e1 <= 16; e1++)this.channels[e1] = new OutputChannel(this, e1);
+        this._midiOutput.onstatechange = this._onStateChange.bind(this);
+    }
+    async destroy() {
+        this.removeListener(), this.channels.forEach((e1)=>e1.destroy()), this.channels = [], this._midiOutput && (this._midiOutput.onstatechange = null), await this.close(), this._midiOutput = null;
+    }
+    _onStateChange(e1) {
+        let t1 = {
+            timestamp: wm.time
+        };
+        "open" === e1.port.connection ? (t1.type = "opened", t1.target = this, t1.port = t1.target, this.emit("opened", t1)) : "closed" === e1.port.connection && "connected" === e1.port.state ? (t1.type = "closed", t1.target = this, t1.port = t1.target, this.emit("closed", t1)) : "closed" === e1.port.connection && "disconnected" === e1.port.state ? (t1.type = "disconnected", t1.port = {
+            connection: e1.port.connection,
+            id: e1.port.id,
+            manufacturer: e1.port.manufacturer,
+            name: e1.port.name,
+            state: e1.port.state,
+            type: e1.port.type
+        }, this.emit("disconnected", t1)) : "pending" === e1.port.connection && "disconnected" === e1.port.state || console.warn("This statechange event was not caught:", e1.port.connection, e1.port.state);
+    }
+    async open() {
+        try {
+            return await this._midiOutput.open(), Promise.resolve(this);
+        } catch (e1) {
+            return Promise.reject(e1);
+        }
+    }
+    async close() {
+        this._midiOutput ? await this._midiOutput.close() : await Promise.resolve();
+    }
+    /**
+   * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
+   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
+   * [`Uint8Array`]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * object or a [`Message`](Message) object.
+   *
+   * It is usually not necessary to use this method directly as you can use one of the simpler
+   * helper methods such as [`playNote()`](#playNote), [`stopNote()`](#stopNote),
+   * [`sendControlChange()`](#sendControlChange), etc.
+   *
+   * Details on the format of MIDI messages are available in the summary of
+   * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
+   * from the MIDI Manufacturers Association.
+   *
+   * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
+   * object (not available in Node.js) containing the message bytes or a `Message` object.
+   *
+   * @param {object} [options={}]
+   *
+   * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+   * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @license Apache-2.0
+   */ send(e1, t1 = {
+        time: 0
+    }, n1 = 0) {
+        if (e1 instanceof Message && (e1 = Utilities.isNode ? e1.data : e1.rawData), e1 instanceof Uint8Array && Utilities.isNode && (e1 = Array.from(e1)), wm.validation) {
+            if (Array.isArray(e1) || e1 instanceof Uint8Array || (e1 = [
+                e1
+            ], Array.isArray(t1) && (e1 = e1.concat(t1)), t1 = isNaN(n1) ? {
+                time: 0
+            } : {
+                time: n1
+            }), !(parseInt(e1[0]) >= 128 && parseInt(e1[0]) <= 255)) throw new RangeError("The first byte (status) must be an integer between 128 and 255.");
+            e1.slice(1).forEach((e1)=>{
+                if (!((e1 = parseInt(e1)) >= 0 && e1 <= 255)) throw new RangeError("Data bytes must be integers between 0 and 255.");
+            }), t1 || (t1 = {
+                time: 0
+            });
+        }
+        return this._midiOutput.send(e1, Utilities.toTimestamp(t1.time)), this;
+    }
+    sendSysex(e1, t1 = [], n1 = {}) {
+        if (e1 = [].concat(e1), t1 instanceof Uint8Array) {
+            const r1 = new Uint8Array(1 + e1.length + t1.length + 1);
+            r1[0] = Enumerations.SYSTEM_MESSAGES.sysex, r1.set(Uint8Array.from(e1), 1), r1.set(t1, 1 + e1.length), r1[r1.length - 1] = Enumerations.SYSTEM_MESSAGES.sysexend, this.send(r1, {
+                time: n1.time
+            });
+        } else {
+            const r1 = e1.concat(t1, Enumerations.SYSTEM_MESSAGES.sysexend);
+            this.send([
+                Enumerations.SYSTEM_MESSAGES.sysex
+            ].concat(r1), {
+                time: n1.time
+            });
+        }
+        return this;
+    }
+    clear() {
+        return this._midiOutput.clear ? this._midiOutput.clear() : wm.validation && console.warn("The 'clear()' method has not yet been implemented in your environment."), this;
+    }
+    sendTimecodeQuarterFrame(e1, t1 = {}) {
+        if (wm.validation && (e1 = parseInt(e1), isNaN(e1) || !(e1 >= 0 && e1 <= 127))) throw new RangeError("The value must be an integer between 0 and 127.");
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.timecode,
+            e1
+        ], {
+            time: t1.time
+        }), this;
+    }
+    sendSongPosition(e1 = 0, t1 = {}) {
+        var n1 = (e1 = Math.floor(e1) || 0) >> 7 & 127, r1 = 127 & e1;
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.songposition,
+            n1,
+            r1
+        ], {
+            time: t1.time
+        }), this;
+    }
+    sendSongSelect(e1 = 0, t1 = {}) {
+        if (wm.validation && (e1 = parseInt(e1), isNaN(e1) || !(e1 >= 0 && e1 <= 127))) throw new RangeError("The program value must be between 0 and 127");
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.songselect,
+            e1
+        ], {
+            time: t1.time
+        }), this;
+    }
+    sendTuneRequest(e1 = {}) {
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.tunerequest
+        ], {
+            time: e1.time
+        }), this;
+    }
+    sendClock(e1 = {}) {
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.clock
+        ], {
+            time: e1.time
+        }), this;
+    }
+    sendStart(e1 = {}) {
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.start
+        ], {
+            time: e1.time
+        }), this;
+    }
+    sendContinue(e1 = {}) {
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.continue
+        ], {
+            time: e1.time
+        }), this;
+    }
+    sendStop(e1 = {}) {
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.stop
+        ], {
+            time: e1.time
+        }), this;
+    }
+    sendActiveSensing(e1 = {}) {
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.activesensing
+        ], {
+            time: e1.time
+        }), this;
+    }
+    sendReset(e1 = {}) {
+        return this.send([
+            Enumerations.SYSTEM_MESSAGES.reset
+        ], {
+            time: e1.time
+        }), this;
+    }
+    sendTuningRequest(e1 = {}) {
+        return wm.validation && console.warn("The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead."), this.sendTuneRequest(e1);
+    }
+    sendKeyAftertouch(e1, t1, n1 = {}) {
+        return null == n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(n1.channels).forEach((r1)=>{
+            this.channels[r1].sendKeyAftertouch(e1, t1, n1);
+        }), this;
+    }
+    sendControlChange(e1, t1, n1 = {}, r1 = {}) {
+        if (wm.validation && (Array.isArray(n1) || Number.isInteger(n1) || "all" === n1)) {
+            const e1 = n1;
+            (n1 = r1).channels = e1, "all" === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(n1.channels).forEach((r1)=>{
+            this.channels[r1].sendControlChange(e1, t1, n1);
+        }), this;
+    }
+    sendPitchBendRange(e1 = 0, t1 = 0, n1 = {}) {
+        return null == n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(n1.channels).forEach((r1)=>{
+            this.channels[r1].sendPitchBendRange(e1, t1, n1);
+        }), this;
+    }
+    setPitchBendRange(e1 = 0, t1 = 0, n1 = "all", r1 = {}) {
+        return wm.validation && (console.warn("The setPitchBendRange() method is deprecated. Use sendPitchBendRange() instead."), r1.channels = n1, "all" === r1.channels && (r1.channels = Enumerations.MIDI_CHANNEL_NUMBERS)), this.sendPitchBendRange(e1, t1, r1);
+    }
+    sendRpnValue(e1, t1, n1 = {}) {
+        return null == n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(n1.channels).forEach((r1)=>{
+            this.channels[r1].sendRpnValue(e1, t1, n1);
+        }), this;
+    }
+    setRegisteredParameter(e1, t1 = [], n1 = "all", r1 = {}) {
+        return wm.validation && (console.warn("The setRegisteredParameter() method is deprecated. Use sendRpnValue() instead."), r1.channels = n1, "all" === r1.channels && (r1.channels = Enumerations.MIDI_CHANNEL_NUMBERS)), this.sendRpnValue(e1, t1, r1);
+    }
+    sendChannelAftertouch(e1, t1 = {}, n1 = {}) {
+        if (wm.validation && (Array.isArray(t1) || Number.isInteger(t1) || "all" === t1)) {
+            const e1 = t1;
+            (t1 = n1).channels = e1, "all" === t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendChannelAftertouch(e1, t1);
+        }), this;
+    }
+    sendPitchBend(e1, t1 = {}, n1 = {}) {
+        if (wm.validation && (Array.isArray(t1) || Number.isInteger(t1) || "all" === t1)) {
+            const e1 = t1;
+            (t1 = n1).channels = e1, "all" === t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendPitchBend(e1, t1);
+        }), this;
+    }
+    sendProgramChange(e1 = 0, t1 = {}, n1 = {}) {
+        if (wm.validation && (Array.isArray(t1) || Number.isInteger(t1) || "all" === t1)) {
+            const e1 = t1;
+            (t1 = n1).channels = e1, "all" === t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendProgramChange(e1, t1);
+        }), this;
+    }
+    sendModulationRange(e1, t1, n1 = {}) {
+        return null == n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(n1.channels).forEach((r1)=>{
+            this.channels[r1].sendModulationRange(e1, t1, n1);
+        }), this;
+    }
+    setModulationRange(e1 = 0, t1 = 0, n1 = "all", r1 = {}) {
+        return wm.validation && (console.warn("The setModulationRange() method is deprecated. Use sendModulationRange() instead."), r1.channels = n1, "all" === r1.channels && (r1.channels = Enumerations.MIDI_CHANNEL_NUMBERS)), this.sendModulationRange(e1, t1, r1);
+    }
+    sendMasterTuning(e1, t1 = {}) {
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendMasterTuning(e1, t1);
+        }), this;
+    }
+    setMasterTuning(e1, t1 = {}, n1 = {}) {
+        return wm.validation && (console.warn("The setMasterTuning() method is deprecated. Use sendMasterTuning() instead."), n1.channels = t1, "all" === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS)), this.sendMasterTuning(e1, n1);
+    }
+    sendTuningProgram(e1, t1 = {}) {
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendTuningProgram(e1, t1);
+        }), this;
+    }
+    setTuningProgram(e1, t1 = "all", n1 = {}) {
+        return wm.validation && (console.warn("The setTuningProgram() method is deprecated. Use sendTuningProgram() instead."), n1.channels = t1, "all" === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS)), this.sendTuningProgram(e1, n1);
+    }
+    sendTuningBank(e1 = 0, t1 = {}) {
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendTuningBank(e1, t1);
+        }), this;
+    }
+    setTuningBank(e1, t1 = "all", n1 = {}) {
+        return wm.validation && (console.warn("The setTuningBank() method is deprecated. Use sendTuningBank() instead."), n1.channels = t1, "all" === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS)), this.sendTuningBank(e1, n1);
+    }
+    sendChannelMode(e1, t1 = 0, n1 = {}, r1 = {}) {
+        if (wm.validation && (Array.isArray(n1) || Number.isInteger(n1) || "all" === n1)) {
+            const e1 = n1;
+            (n1 = r1).channels = e1, "all" === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(n1.channels).forEach((r1)=>{
+            this.channels[r1].sendChannelMode(e1, t1, n1);
+        }), this;
+    }
+    sendAllSoundOff(e1 = {}) {
+        return null == e1.channels && (e1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(e1.channels).forEach((t1)=>{
+            this.channels[t1].sendAllSoundOff(e1);
+        }), this;
+    }
+    sendAllNotesOff(e1 = {}) {
+        return null == e1.channels && (e1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(e1.channels).forEach((t1)=>{
+            this.channels[t1].sendAllNotesOff(e1);
+        }), this;
+    }
+    sendResetAllControllers(e1 = {}, t1 = {}) {
+        if (wm.validation && (Array.isArray(e1) || Number.isInteger(e1) || "all" === e1)) {
+            const n1 = e1;
+            (e1 = t1).channels = n1, "all" === e1.channels && (e1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == e1.channels && (e1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(e1.channels).forEach((t1)=>{
+            this.channels[t1].sendResetAllControllers(e1);
+        }), this;
+    }
+    sendPolyphonicMode(e1, t1 = {}, n1 = {}) {
+        if (wm.validation && (Array.isArray(t1) || Number.isInteger(t1) || "all" === t1)) {
+            const e1 = t1;
+            (t1 = n1).channels = e1, "all" === t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendPolyphonicMode(e1, t1);
+        }), this;
+    }
+    sendLocalControl(e1, t1 = {}, n1 = {}) {
+        if (wm.validation && (Array.isArray(t1) || Number.isInteger(t1) || "all" === t1)) {
+            const e1 = t1;
+            (t1 = n1).channels = e1, "all" === t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendLocalControl(e1, t1);
+        }), this;
+    }
+    sendOmniMode(e1, t1 = {}, n1 = {}) {
+        if (wm.validation && (Array.isArray(t1) || Number.isInteger(t1) || "all" === t1)) {
+            const e1 = t1;
+            (t1 = n1).channels = e1, "all" === t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendOmniMode(e1, t1);
+        }), this;
+    }
+    sendNrpnValue(e1, t1, n1 = {}) {
+        return null == n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(n1.channels).forEach((r1)=>{
+            this.channels[r1].sendNrpnValue(e1, t1, n1);
+        }), this;
+    }
+    setNonRegisteredParameter(e1, t1 = [], n1 = "all", r1 = {}) {
+        return wm.validation && (console.warn("The setNonRegisteredParameter() method is deprecated. Use sendNrpnValue() instead."), r1.channels = n1, "all" === r1.channels && (r1.channels = Enumerations.MIDI_CHANNEL_NUMBERS)), this.sendNrpnValue(e1, t1, r1);
+    }
+    sendRpnIncrement(e1, t1 = {}) {
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendRpnIncrement(e1, t1);
+        }), this;
+    }
+    incrementRegisteredParameter(e1, t1 = "all", n1 = {}) {
+        return wm.validation && (console.warn("The incrementRegisteredParameter() method is deprecated. Use sendRpnIncrement() instead."), n1.channels = t1, "all" === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS)), this.sendRpnIncrement(e1, n1);
+    }
+    sendRpnDecrement(e1, t1 = {}) {
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendRpnDecrement(e1, t1);
+        }), this;
+    }
+    decrementRegisteredParameter(e1, t1 = "all", n1 = {}) {
+        return wm.validation && (console.warn("The decrementRegisteredParameter() method is deprecated. Use sendRpnDecrement() instead."), n1.channels = t1, "all" === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS)), this.sendRpnDecrement(e1, n1);
+    }
+    sendNoteOff(e1, t1 = {}, n1 = {}) {
+        if (wm.validation && (Array.isArray(t1) || Number.isInteger(t1) || "all" === t1)) {
+            const e1 = t1;
+            (t1 = n1).channels = e1, "all" === t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendNoteOff(e1, t1);
+        }), this;
+    }
+    stopNote(e1, t1) {
+        return this.sendNoteOff(e1, t1);
+    }
+    playNote(e1, t1 = {}, n1 = {}) {
+        if (wm.validation && (t1.rawVelocity && console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' instead."), t1.velocity && console.warn("The 'velocity' option is deprecated. Use 'velocity' instead."), Array.isArray(t1) || Number.isInteger(t1) || "all" === t1)) {
+            const e1 = t1;
+            (t1 = n1).channels = e1, "all" === t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].playNote(e1, t1);
+        }), this;
+    }
+    sendNoteOn(e1, t1 = {}, n1 = {}) {
+        if (wm.validation && (Array.isArray(t1) || Number.isInteger(t1) || "all" === t1)) {
+            const e1 = t1;
+            (t1 = n1).channels = e1, "all" === t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+        }
+        return null == t1.channels && (t1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(t1.channels).forEach((n1)=>{
+            this.channels[n1].sendNoteOn(e1, t1);
+        }), this;
+    }
+    get name() {
+        return this._midiOutput.name;
+    }
+    get id() {
+        return this._midiOutput.id;
+    }
+    get connection() {
+        return this._midiOutput.connection;
+    }
+    get manufacturer() {
+        return this._midiOutput.manufacturer;
+    }
+    get state() {
+        return this._midiOutput.state;
+    }
+    get type() {
+        return this._midiOutput.type;
+    }
+    get octaveOffset() {
+        return this._octaveOffset;
+    }
+    set octaveOffset(e1) {
+        if (this.validation && (e1 = parseInt(e1), isNaN(e1))) throw new TypeError("The 'octaveOffset' property must be an integer.");
+        this._octaveOffset = e1;
+    }
+}
+/**
+ * The `Forwarder` class allows the forwarding of MIDI messages to predetermined outputs. When you
+ * call its [`forward()`](#forward) method, it will send the specified [`Message`](Message) object
+ * to all the outputs listed in its [`destinations`](#destinations) property.
+ *
+ * If specific channels or message types have been defined in the [`channels`](#channels) or
+ * [`types`](#types) properties, only messages matching the channels/types will be forwarded.
+ *
+ * While it can be manually instantiated, you are more likely to come across a `Forwarder` object as
+ * the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */ class Forwarder {
+    constructor(e1 = [], t1 = {}){
+        this.destinations = [], this.types = [
+            ...Object.keys(Enumerations.SYSTEM_MESSAGES),
+            ...Object.keys(Enumerations.CHANNEL_MESSAGES)
+        ], this.channels = Enumerations.MIDI_CHANNEL_NUMBERS, this.suspended = !1, Array.isArray(e1) || (e1 = [
+            e1
+        ]), t1.types && !Array.isArray(t1.types) && (t1.types = [
+            t1.types
+        ]), t1.channels && !Array.isArray(t1.channels) && (t1.channels = [
+            t1.channels
+        ]), wm.validation && (e1.forEach((e1)=>{
+            if (!(e1 instanceof Output)) throw new TypeError("Destinations must be of type 'Output'.");
+        }), void 0 !== t1.types && t1.types.forEach((e1)=>{
+            if (!Enumerations.SYSTEM_MESSAGES.hasOwnProperty(e1) && !Enumerations.CHANNEL_MESSAGES.hasOwnProperty(e1)) throw new TypeError("Type must be a valid message type.");
+        }), void 0 !== t1.channels && t1.channels.forEach((e1)=>{
+            if (!Enumerations.MIDI_CHANNEL_NUMBERS.includes(e1)) throw new TypeError("MIDI channel must be between 1 and 16.");
+        })), this.destinations = e1, t1.types && (this.types = t1.types), t1.channels && (this.channels = t1.channels);
+    }
+    forward(e1) {
+        this.suspended || this.types.includes(e1.type) && (e1.channel && !this.channels.includes(e1.channel) || this.destinations.forEach((t1)=>{
+            (!wm.validation || t1 instanceof Output) && t1.send(e1);
+        }));
+    }
+}
+/**
+ * The `InputChannel` class represents a single MIDI input channel (1-16) from a single input
+ * device. This object is derived from the host's MIDI subsystem and should not be instantiated
+ * directly.
+ *
+ * All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
+ * property.
+ *
+ * @fires InputChannel#midimessage
+ * @fires InputChannel#unknownmessage
+ *
+ * @fires InputChannel#noteoff
+ * @fires InputChannel#noteon
+ * @fires InputChannel#keyaftertouch
+ * @fires InputChannel#programchange
+ * @fires InputChannel#channelaftertouch
+ * @fires InputChannel#pitchbend
+ *
+ * @fires InputChannel#allnotesoff
+ * @fires InputChannel#allsoundoff
+ * @fires InputChannel#localcontrol
+ * @fires InputChannel#monomode
+ * @fires InputChannel#omnimode
+ * @fires InputChannel#resetallcontrollers
+ *
+ * @fires InputChannel#event:nrpn
+ * @fires InputChannel#event:nrpn-dataentrycoarse
+ * @fires InputChannel#event:nrpn-dataentryfine
+ * @fires InputChannel#event:nrpn-dataincrement
+ * @fires InputChannel#event:nrpn-datadecrement
+ * @fires InputChannel#event:rpn
+ * @fires InputChannel#event:rpn-dataentrycoarse
+ * @fires InputChannel#event:rpn-dataentryfine
+ * @fires InputChannel#event:rpn-dataincrement
+ * @fires InputChannel#event:rpn-datadecrement
+ *
+ * @fires InputChannel#controlchange
+ * @fires InputChannel#event:controlchange-controllerxxx
+ * @fires InputChannel#event:controlchange-bankselectcoarse
+ * @fires InputChannel#event:controlchange-modulationwheelcoarse
+ * @fires InputChannel#event:controlchange-breathcontrollercoarse
+ * @fires InputChannel#event:controlchange-footcontrollercoarse
+ * @fires InputChannel#event:controlchange-portamentotimecoarse
+ * @fires InputChannel#event:controlchange-dataentrycoarse
+ * @fires InputChannel#event:controlchange-volumecoarse
+ * @fires InputChannel#event:controlchange-balancecoarse
+ * @fires InputChannel#event:controlchange-pancoarse
+ * @fires InputChannel#event:controlchange-expressioncoarse
+ * @fires InputChannel#event:controlchange-effectcontrol1coarse
+ * @fires InputChannel#event:controlchange-effectcontrol2coarse
+ * @fires InputChannel#event:controlchange-generalpurposecontroller1
+ * @fires InputChannel#event:controlchange-generalpurposecontroller2
+ * @fires InputChannel#event:controlchange-generalpurposecontroller3
+ * @fires InputChannel#event:controlchange-generalpurposecontroller4
+ * @fires InputChannel#event:controlchange-bankselectfine
+ * @fires InputChannel#event:controlchange-modulationwheelfine
+ * @fires InputChannel#event:controlchange-breathcontrollerfine
+ * @fires InputChannel#event:controlchange-footcontrollerfine
+ * @fires InputChannel#event:controlchange-portamentotimefine
+ * @fires InputChannel#event:controlchange-dataentryfine
+ * @fires InputChannel#event:controlchange-channelvolumefine
+ * @fires InputChannel#event:controlchange-balancefine
+ * @fires InputChannel#event:controlchange-panfine
+ * @fires InputChannel#event:controlchange-expressionfine
+ * @fires InputChannel#event:controlchange-effectcontrol1fine
+ * @fires InputChannel#event:controlchange-effectcontrol2fine
+ * @fires InputChannel#event:controlchange-damperpedal
+ * @fires InputChannel#event:controlchange-portamento
+ * @fires InputChannel#event:controlchange-sostenuto
+ * @fires InputChannel#event:controlchange-softpedal
+ * @fires InputChannel#event:controlchange-legatopedal
+ * @fires InputChannel#event:controlchange-hold2
+ * @fires InputChannel#event:controlchange-soundvariation
+ * @fires InputChannel#event:controlchange-resonance
+ * @fires InputChannel#event:controlchange-releasetime
+ * @fires InputChannel#event:controlchange-attacktime
+ * @fires InputChannel#event:controlchange-brightness
+ * @fires InputChannel#event:controlchange-decaytime
+ * @fires InputChannel#event:controlchange-vibratorate
+ * @fires InputChannel#event:controlchange-vibratodepth
+ * @fires InputChannel#event:controlchange-vibratodelay
+ * @fires InputChannel#event:controlchange-generalpurposecontroller5
+ * @fires InputChannel#event:controlchange-generalpurposecontroller6
+ * @fires InputChannel#event:controlchange-generalpurposecontroller7
+ * @fires InputChannel#event:controlchange-generalpurposecontroller8
+ * @fires InputChannel#event:controlchange-portamentocontrol
+ * @fires InputChannel#event:controlchange-highresolutionvelocityprefix
+ * @fires InputChannel#event:controlchange-effect1depth
+ * @fires InputChannel#event:controlchange-effect2depth
+ * @fires InputChannel#event:controlchange-effect3depth
+ * @fires InputChannel#event:controlchange-effect4depth
+ * @fires InputChannel#event:controlchange-effect5depth
+ * @fires InputChannel#event:controlchange-dataincrement
+ * @fires InputChannel#event:controlchange-datadecrement
+ * @fires InputChannel#event:controlchange-nonregisteredparameterfine
+ * @fires InputChannel#event:controlchange-nonregisteredparametercoarse
+ * @fires InputChannel#event:controlchange-registeredparameterfine
+ * @fires InputChannel#event:controlchange-registeredparametercoarse
+ * @fires InputChannel#event:controlchange-allsoundoff
+ * @fires InputChannel#event:controlchange-resetallcontrollers
+ * @fires InputChannel#event:controlchange-localcontrol
+ * @fires InputChannel#event:controlchange-allnotesoff
+ * @fires InputChannel#event:controlchange-omnimodeoff
+ * @fires InputChannel#event:controlchange-omnimodeon
+ * @fires InputChannel#event:controlchange-monomodeon
+ * @fires InputChannel#event:controlchange-polymodeon
+ * @fires InputChannel#event:
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
+ * @since 3.0.0
+ */ class InputChannel extends EventEmitter {
+    constructor(e1, t1){
+        super(), this._input = e1, this._number = t1, this._octaveOffset = 0, this._nrpnBuffer = [], this._rpnBuffer = [], this.parameterNumberEventsEnabled = !0, this.notesState = new Array(128).fill(!1);
+    }
+    destroy() {
+        this._input = null, this._number = null, this._octaveOffset = 0, this._nrpnBuffer = [], this.notesState = new Array(128).fill(!1), this.parameterNumberEventsEnabled = !1, this.removeListener();
+    }
+    _processMidiMessageEvent(e1) {
+        const t1 = Object.assign({}, e1);
+        t1.port = this.input, t1.target = this, t1.type = "midimessage", this.emit(t1.type, t1), this._parseEventForStandardMessages(t1);
+    }
+    _parseEventForStandardMessages(e1) {
+        const t1 = Object.assign({}, e1);
+        t1.type = t1.message.type || "unknownmessage";
+        const n1 = e1.message.dataBytes[0], r1 = e1.message.dataBytes[1];
+        if ("noteoff" === t1.type || "noteon" === t1.type && 0 === r1) this.notesState[n1] = !1, t1.type = "noteoff", t1.note = new Note(Utilities.offsetNumber(n1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
+            rawAttack: 0,
+            rawRelease: r1
+        }), t1.value = Utilities.from7bitToFloat(r1), t1.rawValue = r1, t1.velocity = t1.note.release, t1.rawVelocity = t1.note.rawRelease;
+        else if ("noteon" === t1.type) this.notesState[n1] = !0, t1.note = new Note(Utilities.offsetNumber(n1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
+            rawAttack: r1
+        }), t1.value = Utilities.from7bitToFloat(r1), t1.rawValue = r1, t1.velocity = t1.note.attack, t1.rawVelocity = t1.note.rawAttack;
+        else if ("keyaftertouch" === t1.type) t1.note = new Note(Utilities.offsetNumber(n1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset)), t1.value = Utilities.from7bitToFloat(r1), t1.rawValue = r1, t1.identifier = t1.note.identifier, t1.key = t1.note.number, t1.rawKey = n1;
+        else if ("controlchange" === t1.type) {
+            t1.controller = {
+                number: n1,
+                name: Enumerations.CONTROL_CHANGE_MESSAGES[n1].name,
+                description: Enumerations.CONTROL_CHANGE_MESSAGES[n1].description,
+                position: Enumerations.CONTROL_CHANGE_MESSAGES[n1].position
+            }, t1.subtype = t1.controller.name || "controller" + n1, t1.value = Utilities.from7bitToFloat(r1), t1.rawValue = r1;
+            const e1 = Object.assign({}, t1);
+            e1.type = `${t1.type}-controller${n1}`, delete e1.subtype, this.emit(e1.type, e1);
+            const i1 = Object.assign({}, t1);
+            i1.type = t1.type + "-" + Enumerations.CONTROL_CHANGE_MESSAGES[n1].name, delete i1.subtype, 0 !== i1.type.indexOf("controller") && this.emit(i1.type, i1), t1.message.dataBytes[0] >= 120 && this._parseChannelModeMessage(t1), this.parameterNumberEventsEnabled && this._isRpnOrNrpnController(t1.message.dataBytes[0]) && this._parseEventForParameterNumber(t1);
+        } else "programchange" === t1.type ? (t1.value = n1, t1.rawValue = t1.value) : "channelaftertouch" === t1.type ? (t1.value = Utilities.from7bitToFloat(n1), t1.rawValue = n1) : "pitchbend" === t1.type ? (t1.value = ((r1 << 7) + n1 - 8192) / 8192, t1.rawValue = (r1 << 7) + n1) : t1.type = "unknownmessage";
+        this.emit(t1.type, t1);
+    }
+    _parseChannelModeMessage(e1) {
+        const t1 = Object.assign({}, e1);
+        t1.type = t1.controller.name, "localcontrol" === t1.type && (t1.value = 127 === t1.message.data[2], t1.rawValue = t1.message.data[2]), "omnimodeon" === t1.type ? (t1.type = "omnimode", t1.value = !0, t1.rawValue = t1.message.data[2]) : "omnimodeoff" === t1.type && (t1.type = "omnimode", t1.value = !1, t1.rawValue = t1.message.data[2]), "monomodeon" === t1.type ? (t1.type = "monomode", t1.value = !0, t1.rawValue = t1.message.data[2]) : "polymodeon" === t1.type && (t1.type = "monomode", t1.value = !1, t1.rawValue = t1.message.data[2]), this.emit(t1.type, t1);
+    }
+    _parseEventForParameterNumber(e1) {
+        const t1 = e1.message.dataBytes[0], n1 = e1.message.dataBytes[1];
+        99 === t1 || 101 === t1 ? (this._nrpnBuffer = [], this._rpnBuffer = [], 99 === t1 ? this._nrpnBuffer = [
+            e1.message
+        ] : 127 !== n1 && (this._rpnBuffer = [
+            e1.message
+        ])) : 98 === t1 || 100 === t1 ? 98 === t1 ? (this._rpnBuffer = [], 1 === this._nrpnBuffer.length ? this._nrpnBuffer.push(e1.message) : this._nrpnBuffer = []) : (this._nrpnBuffer = [], 1 === this._rpnBuffer.length && 127 !== n1 ? this._rpnBuffer.push(e1.message) : this._rpnBuffer = []) : 6 !== t1 && 38 !== t1 && 96 !== t1 && 97 !== t1 || (2 === this._rpnBuffer.length ? this._dispatchParameterNumberEvent("rpn", this._rpnBuffer[0].dataBytes[1], this._rpnBuffer[1].dataBytes[1], e1) : 2 === this._nrpnBuffer.length ? this._dispatchParameterNumberEvent("nrpn", this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], e1) : (this._nrpnBuffer = [], this._rpnBuffer = []));
+    }
+    _isRpnOrNrpnController(e1) {
+        return 6 === e1 || 38 === e1 || 96 === e1 || 97 === e1 || 98 === e1 || 99 === e1 || 100 === e1 || 101 === e1;
+    }
+    _dispatchParameterNumberEvent(e1, t1, n1, r1) {
+        e1 = "nrpn" === e1 ? "nrpn" : "rpn";
+        const i1 = {
+            target: r1.target,
+            timestamp: r1.timestamp,
+            message: r1.message,
+            parameterMsb: t1,
+            parameterLsb: n1,
+            value: Utilities.from7bitToFloat(r1.message.dataBytes[1]),
+            rawValue: r1.message.dataBytes[1]
+        };
+        i1.parameter = "rpn" === e1 ? Object.keys(Enumerations.REGISTERED_PARAMETERS).find((e1)=>Enumerations.REGISTERED_PARAMETERS[e1][0] === t1 && Enumerations.REGISTERED_PARAMETERS[e1][1] === n1) : (t1 << 7) + n1;
+        const s1 = Enumerations.CONTROL_CHANGE_MESSAGES[r1.message.dataBytes[0]].name;
+        i1.type = `${e1}-${s1}`, this.emit(i1.type, i1);
+        const a1 = Object.assign({}, i1);
+        "nrpn-dataincrement" === a1.type ? a1.type = "nrpn-databuttonincrement" : "nrpn-datadecrement" === a1.type ? a1.type = "nrpn-databuttondecrement" : "rpn-dataincrement" === a1.type ? a1.type = "rpn-databuttonincrement" : "rpn-datadecrement" === a1.type && (a1.type = "rpn-databuttondecrement"), this.emit(a1.type, a1), i1.type = e1, i1.subtype = s1, this.emit(i1.type, i1);
+    }
+    getChannelModeByNumber(e1) {
+        return wm.validation && (console.warn("The 'getChannelModeByNumber()' method has been moved to the 'Utilities' class."), e1 = Math.floor(e1)), Utilities.getChannelModeByNumber(e1);
+    }
+    getCcNameByNumber(e1) {
+        if (wm.validation && (console.warn("The 'getCcNameByNumber()' method has been moved to the 'Utilities' class."), !((e1 = parseInt(e1)) >= 0 && e1 <= 127))) throw new RangeError("Invalid control change number.");
+        return Utilities.getCcNameByNumber(e1);
+    }
+    getNoteState(e1) {
+        e1 instanceof Note && (e1 = e1.identifier);
+        const t1 = Utilities.guessNoteNumber(e1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
+        return this.notesState[t1];
+    }
+    get octaveOffset() {
+        return this._octaveOffset;
+    }
+    set octaveOffset(e1) {
+        if (this.validation && (e1 = parseInt(e1), isNaN(e1))) throw new TypeError("The 'octaveOffset' property must be an integer.");
+        this._octaveOffset = e1;
+    }
+    get input() {
+        return this._input;
+    }
+    get number() {
+        return this._number;
+    }
+    get nrpnEventsEnabled() {
+        return this.parameterNumberEventsEnabled;
+    }
+    set nrpnEventsEnabled(e1) {
+        this.validation && (e1 = !!e1), this.parameterNumberEventsEnabled = e1;
+    }
+}
+/**
+ * The `Message` class represents a single MIDI message. It has several properties that make it
+ * easy to make sense of the binary data it contains.
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */ class Message {
+    constructor(e1){
+        this.rawData = e1, this.data = Array.from(this.rawData), this.statusByte = this.rawData[0], this.rawDataBytes = this.rawData.slice(1), this.dataBytes = this.data.slice(1), this.isChannelMessage = !1, this.isSystemMessage = !1, this.command = void 0, this.channel = void 0, this.manufacturerId = void 0, this.type = void 0, this.statusByte < 240 ? (this.isChannelMessage = !0, this.command = this.statusByte >> 4, this.channel = 1 + (15 & this.statusByte)) : (this.isSystemMessage = !0, this.command = this.statusByte), this.isChannelMessage ? this.type = Utilities.getPropertyByValue(Enumerations.CHANNEL_MESSAGES, this.command) : this.isSystemMessage && (this.type = Utilities.getPropertyByValue(Enumerations.SYSTEM_MESSAGES, this.command)), this.statusByte === Enumerations.SYSTEM_MESSAGES.sysex && (0 === this.dataBytes[0] ? (this.manufacturerId = this.dataBytes.slice(0, 3), this.dataBytes = this.dataBytes.slice(3, this.rawDataBytes.length - 1), this.rawDataBytes = this.rawDataBytes.slice(3, this.rawDataBytes.length - 1)) : (this.manufacturerId = [
+            this.dataBytes[0]
+        ], this.dataBytes = this.dataBytes.slice(1, this.dataBytes.length - 1), this.rawDataBytes = this.rawDataBytes.slice(1, this.rawDataBytes.length - 1)));
+    }
+}
+/**
+ * The `Input` class represents a single MIDI input port. This object is automatically instantiated
+ * by the library according to the host's MIDI subsystem and does not need to be directly
+ * instantiated. Instead, you can access all `Input` objects by referring to the
+ * [`WebMidi.inputs`](WebMidi#inputs) array. You can also retrieve inputs by using methods such as
+ * [`WebMidi.getInputByName()`](WebMidi#getInputByName) and
+ * [`WebMidi.getInputById()`](WebMidi#getInputById).
+ *
+ * Note that a single MIDI device may expose several inputs and/or outputs.
+ *
+ * **Important**: the `Input` class does not directly fire channel-specific MIDI messages
+ * (such as [`noteon`](InputChannel#event:noteon) or
+ * [`controlchange`](InputChannel#event:controlchange), etc.). The [`InputChannel`](InputChannel)
+ * object does that. However, you can still use the
+ * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
+ * [`InputChannel`](InputChannel) objects at once.
+ *
+ * @fires Input#opened
+ * @fires Input#disconnected
+ * @fires Input#closed
+ * @fires Input#midimessage
+ *
+ * @fires Input#sysex
+ * @fires Input#timecode
+ * @fires Input#songposition
+ * @fires Input#songselect
+ * @fires Input#tunerequest
+ * @fires Input#clock
+ * @fires Input#start
+ * @fires Input#continue
+ * @fires Input#stop
+ * @fires Input#activesensing
+ * @fires Input#reset
+ *
+ * @fires Input#unknownmidimessage
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
+ */ class Input extends EventEmitter {
+    constructor(e1){
+        super(), this._midiInput = e1, this._octaveOffset = 0, this.channels = [];
+        for(let e1 = 1; e1 <= 16; e1++)this.channels[e1] = new InputChannel(this, e1);
+        this._forwarders = [], this._midiInput.onstatechange = this._onStateChange.bind(this), this._midiInput.onmidimessage = this._onMidiMessage.bind(this);
+    }
+    async destroy() {
+        this.removeListener(), this.channels.forEach((e1)=>e1.destroy()), this.channels = [], this._forwarders = [], this._midiInput && (this._midiInput.onstatechange = null, this._midiInput.onmidimessage = null), await this.close(), this._midiInput = null;
+    }
+    _onStateChange(e1) {
+        let t1 = {
+            timestamp: wm.time,
+            target: this,
+            port: this
+        };
+        "open" === e1.port.connection ? (t1.type = "opened", this.emit("opened", t1)) : "closed" === e1.port.connection && "connected" === e1.port.state ? (t1.type = "closed", this.emit("closed", t1)) : "closed" === e1.port.connection && "disconnected" === e1.port.state ? (t1.type = "disconnected", t1.port = {
+            connection: e1.port.connection,
+            id: e1.port.id,
+            manufacturer: e1.port.manufacturer,
+            name: e1.port.name,
+            state: e1.port.state,
+            type: e1.port.type
+        }, this.emit("disconnected", t1)) : "pending" === e1.port.connection && "disconnected" === e1.port.state || console.warn("This statechange event was not caught: ", e1.port.connection, e1.port.state);
+    }
+    _onMidiMessage(e1) {
+        const t1 = new Message(e1.data), n1 = {
+            port: this,
+            target: this,
+            message: t1,
+            timestamp: e1.timeStamp,
+            type: "midimessage",
+            data: t1.data,
+            rawData: t1.data,
+            statusByte: t1.data[0],
+            dataBytes: t1.dataBytes
+        };
+        this.emit("midimessage", n1), t1.isSystemMessage ? this._parseEvent(n1) : t1.isChannelMessage && this.channels[t1.channel]._processMidiMessageEvent(n1), this._forwarders.forEach((e1)=>e1.forward(t1));
+    }
+    _parseEvent(e1) {
+        const t1 = Object.assign({}, e1);
+        t1.type = t1.message.type || "unknownmidimessage", "songselect" === t1.type && (t1.song = e1.data[1] + 1, t1.value = e1.data[1], t1.rawValue = t1.value), this.emit(t1.type, t1);
+    }
+    async open() {
+        try {
+            await this._midiInput.open();
+        } catch (e1) {
+            return Promise.reject(e1);
+        }
+        return Promise.resolve(this);
+    }
+    async close() {
+        if (!this._midiInput) return Promise.resolve(this);
+        try {
+            await this._midiInput.close();
+        } catch (e1) {
+            return Promise.reject(e1);
+        }
+        return Promise.resolve(this);
+    }
+    getChannelModeByNumber() {
+        wm.validation && console.warn("The 'getChannelModeByNumber()' method has been moved to the 'Utilities' class.");
+    }
+    addListener(e1, t1, n1 = {}) {
+        if (wm.validation && "function" == typeof n1) {
+            let e1 = null != t1 ? [].concat(t1) : void 0;
+            t1 = n1, n1 = {
+                channels: e1
+            };
+        }
+        if (Enumerations.CHANNEL_EVENTS.includes(e1)) {
+            void 0 === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS);
+            let r1 = [];
+            return Utilities.sanitizeChannels(n1.channels).forEach((i1)=>{
+                r1.push(this.channels[i1].addListener(e1, t1, n1));
+            }), r1;
+        }
+        return super.addListener(e1, t1, n1);
+    }
+    addOneTimeListener(e1, t1, n1 = {}) {
+        return n1.remaining = 1, this.addListener(e1, t1, n1);
+    }
+    on(e1, t1, n1, r1) {
+        return this.addListener(e1, t1, n1, r1);
+    }
+    hasListener(e1, t1, n1 = {}) {
+        if (wm.validation && "function" == typeof n1) {
+            let e1 = [].concat(t1);
+            t1 = n1, n1 = {
+                channels: e1
+            };
+        }
+        return Enumerations.CHANNEL_EVENTS.includes(e1) ? (void 0 === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), Utilities.sanitizeChannels(n1.channels).every((n1)=>this.channels[n1].hasListener(e1, t1))) : super.hasListener(e1, t1);
+    }
+    removeListener(e1, t1, n1 = {}) {
+        if (wm.validation && "function" == typeof n1) {
+            let e1 = [].concat(t1);
+            t1 = n1, n1 = {
+                channels: e1
+            };
+        }
+        if (void 0 === n1.channels && (n1.channels = Enumerations.MIDI_CHANNEL_NUMBERS), null == e1) return Utilities.sanitizeChannels(n1.channels).forEach((e1)=>{
+            this.channels[e1] && this.channels[e1].removeListener();
+        }), super.removeListener();
+        Enumerations.CHANNEL_EVENTS.includes(e1) ? Utilities.sanitizeChannels(n1.channels).forEach((r1)=>{
+            this.channels[r1].removeListener(e1, t1, n1);
+        }) : super.removeListener(e1, t1, n1);
+    }
+    addForwarder(e1, t1 = {}) {
+        let n1;
+        return n1 = e1 instanceof Forwarder ? e1 : new Forwarder(e1, t1), this._forwarders.push(n1), n1;
+    }
+    removeForwarder(e1) {
+        this._forwarders = this._forwarders.filter((t1)=>t1 !== e1);
+    }
+    hasForwarder(e1) {
+        return this._forwarders.includes(e1);
+    }
+    get name() {
+        return this._midiInput.name;
+    }
+    get id() {
+        return this._midiInput.id;
+    }
+    get connection() {
+        return this._midiInput.connection;
+    }
+    get manufacturer() {
+        return this._midiInput.manufacturer;
+    }
+    get octaveOffset() {
+        return this._octaveOffset;
+    }
+    set octaveOffset(e1) {
+        if (this.validation && (e1 = parseInt(e1), isNaN(e1))) throw new TypeError("The 'octaveOffset' property must be an integer.");
+        this._octaveOffset = e1;
+    }
+    get state() {
+        return this._midiInput.state;
+    }
+    get type() {
+        return this._midiInput.type;
+    }
+    get nrpnEventsEnabled() {
+        return wm.validation && console.warn("The 'nrpnEventsEnabled' property has been moved to the 'InputChannel' class."), !1;
+    }
+}
+if (Utilities.isNode) {
+    try {
+        window.navigator;
+    } catch (err) {
+        let jzz;
+        eval('jzz = require("jzz")'), global.navigator || (global.navigator = {}), Object.assign(global.navigator, jzz);
+    }
+    try {
+        performance;
+    } catch (err) {
+        let performance;
+        eval('performance = require("perf_hooks").performance'), global.performance = performance;
+    }
+}
+/**
+ * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
+ * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
+ *
+ * When using the WebMidi.js library, you should know that the `WebMidi` class has already been
+ * instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
+ * simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
+ * module) version, you get an already-instantiated object when you import the module.
+ *
+ * @fires WebMidi#connected
+ * @fires WebMidi#disabled
+ * @fires WebMidi#disconnected
+ * @fires WebMidi#enabled
+ * @fires WebMidi#error
+ * @fires WebMidi#midiaccessgranted
+ * @fires WebMidi#portschanged
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
+ */ class WebMidi extends EventEmitter {
+    constructor(){
+        super(), this.defaults = {
+            note: {
+                attack: Utilities.from7bitToFloat(64),
+                release: Utilities.from7bitToFloat(64),
+                duration: 1 / 0
+            }
+        }, this.interface = null, this.validation = !0, this._inputs = [], this._disconnectedInputs = [], this._outputs = [], this._disconnectedOutputs = [], this._stateChangeQueue = [], this._octaveOffset = 0;
+    }
+    async enable(e1 = {}, t1 = !1) {
+        if (this.validation = !1 !== e1.validation, this.validation && ("function" == typeof e1 && (e1 = {
+            callback: e1,
+            sysex: t1
+        }), t1 && (e1.sysex = !0)), this.enabled) return "function" == typeof e1.callback && e1.callback(), Promise.resolve();
+        const n1 = {
+            timestamp: this.time,
+            target: this,
+            type: "error",
+            error: void 0
+        }, r1 = {
+            timestamp: this.time,
+            target: this,
+            type: "midiaccessgranted"
+        }, i1 = {
+            timestamp: this.time,
+            target: this,
+            type: "enabled"
+        };
+        try {
+            "function" == typeof e1.requestMIDIAccessFunction ? this.interface = await e1.requestMIDIAccessFunction({
+                sysex: e1.sysex,
+                software: e1.software
+            }) : this.interface = await navigator.requestMIDIAccess({
+                sysex: e1.sysex,
+                software: e1.software
+            });
+        } catch (t1) {
+            return n1.error = t1, this.emit("error", n1), "function" == typeof e1.callback && e1.callback(t1), Promise.reject(t1);
+        }
+        this.emit("midiaccessgranted", r1), this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
+        try {
+            await this._updateInputsAndOutputs();
+        } catch (t1) {
+            return n1.error = t1, this.emit("error", n1), "function" == typeof e1.callback && e1.callback(t1), Promise.reject(t1);
+        }
+        return this.emit("enabled", i1), "function" == typeof e1.callback && e1.callback(), Promise.resolve(this);
+    }
+    async disable() {
+        return this.interface && (this.interface.onstatechange = void 0), this._destroyInputsAndOutputs().then(()=>{
+            navigator && "function" == typeof navigator.close && navigator.close(), this.interface = null;
+            let e1 = {
+                timestamp: this.time,
+                target: this,
+                type: "disabled"
+            };
+            this.emit("disabled", e1), this.removeListener();
+        });
+    }
+    getInputById(e1, t1 = {
+        disconnected: !1
+    }) {
+        if (this.validation) {
+            if (!this.enabled) throw new Error("WebMidi is not enabled.");
+            if (!e1) return;
+        }
+        if (t1.disconnected) {
+            for(let t1 = 0; t1 < this._disconnectedInputs.length; t1++)if (this._disconnectedInputs[t1].id === e1.toString()) return this._disconnectedInputs[t1];
+        } else for(let t1 = 0; t1 < this.inputs.length; t1++)if (this.inputs[t1].id === e1.toString()) return this.inputs[t1];
+    }
+    getInputByName(e1, t1 = {
+        disconnected: !1
+    }) {
+        if (this.validation) {
+            if (!this.enabled) throw new Error("WebMidi is not enabled.");
+            if (!e1) return;
+            e1 = e1.toString();
+        }
+        if (t1.disconnected) {
+            for(let t1 = 0; t1 < this._disconnectedInputs.length; t1++)if (~this._disconnectedInputs[t1].name.indexOf(e1)) return this._disconnectedInputs[t1];
+        } else for(let t1 = 0; t1 < this.inputs.length; t1++)if (~this.inputs[t1].name.indexOf(e1)) return this.inputs[t1];
+    }
+    getOutputByName(e1, t1 = {
+        disconnected: !1
+    }) {
+        if (this.validation) {
+            if (!this.enabled) throw new Error("WebMidi is not enabled.");
+            if (!e1) return;
+            e1 = e1.toString();
+        }
+        if (t1.disconnected) {
+            for(let t1 = 0; t1 < this._disconnectedOutputs.length; t1++)if (~this._disconnectedOutputs[t1].name.indexOf(e1)) return this._disconnectedOutputs[t1];
+        } else for(let t1 = 0; t1 < this.outputs.length; t1++)if (~this.outputs[t1].name.indexOf(e1)) return this.outputs[t1];
+    }
+    getOutputById(e1, t1 = {
+        disconnected: !1
+    }) {
+        if (this.validation) {
+            if (!this.enabled) throw new Error("WebMidi is not enabled.");
+            if (!e1) return;
+        }
+        if (t1.disconnected) {
+            for(let t1 = 0; t1 < this._disconnectedOutputs.length; t1++)if (this._disconnectedOutputs[t1].id === e1.toString()) return this._disconnectedOutputs[t1];
+        } else for(let t1 = 0; t1 < this.outputs.length; t1++)if (this.outputs[t1].id === e1.toString()) return this.outputs[t1];
+    }
+    noteNameToNumber(e1) {
+        return this.validation && console.warn("The noteNameToNumber() method is deprecated. Use Utilities.toNoteNumber() instead."), Utilities.toNoteNumber(e1, this.octaveOffset);
+    }
+    getOctave(e1) {
+        return this.validation && (console.warn("The getOctave()is deprecated. Use Utilities.getNoteDetails() instead"), e1 = parseInt(e1)), !isNaN(e1) && e1 >= 0 && e1 <= 127 && Utilities.getNoteDetails(Utilities.offsetNumber(e1, this.octaveOffset)).octave;
+    }
+    sanitizeChannels(e1) {
+        return this.validation && console.warn("The sanitizeChannels() method has been moved to the utilities class."), Utilities.sanitizeChannels(e1);
+    }
+    toMIDIChannels(e1) {
+        return this.validation && console.warn("The toMIDIChannels() method has been deprecated. Use Utilities.sanitizeChannels() instead."), Utilities.sanitizeChannels(e1);
+    }
+    guessNoteNumber(e1) {
+        return this.validation && console.warn("The guessNoteNumber() method has been deprecated. Use Utilities.guessNoteNumber() instead."), Utilities.guessNoteNumber(e1, this.octaveOffset);
+    }
+    getValidNoteArray(e1, t1 = {}) {
+        return this.validation && console.warn("The getValidNoteArray() method has been moved to the Utilities.buildNoteArray()"), Utilities.buildNoteArray(e1, t1);
+    }
+    convertToTimestamp(e1) {
+        return this.validation && console.warn("The convertToTimestamp() method has been moved to Utilities.toTimestamp()."), Utilities.toTimestamp(e1);
+    }
+    async _destroyInputsAndOutputs() {
+        let e1 = [];
+        return this.inputs.forEach((t1)=>e1.push(t1.destroy())), this.outputs.forEach((t1)=>e1.push(t1.destroy())), Promise.all(e1).then(()=>{
+            this._inputs = [], this._outputs = [];
+        });
+    }
+    _onInterfaceStateChange(e1) {
+        this._updateInputsAndOutputs();
+        let t1 = {
+            timestamp: e1.timeStamp,
+            type: e1.port.state,
+            target: this
+        };
+        if ("connected" === e1.port.state && "open" === e1.port.connection) {
+            "output" === e1.port.type ? t1.port = this.getOutputById(e1.port.id) : "input" === e1.port.type && (t1.port = this.getInputById(e1.port.id)), this.emit(e1.port.state, t1);
+            const n1 = Object.assign({}, t1);
+            n1.type = "portschanged", this.emit(n1.type, n1);
+        } else if ("disconnected" === e1.port.state && "pending" === e1.port.connection) {
+            "input" === e1.port.type ? t1.port = this.getInputById(e1.port.id, {
+                disconnected: !0
+            }) : "output" === e1.port.type && (t1.port = this.getOutputById(e1.port.id, {
+                disconnected: !0
+            })), this.emit(e1.port.state, t1);
+            const n1 = Object.assign({}, t1);
+            n1.type = "portschanged", this.emit(n1.type, n1);
+        }
+    }
+    async _updateInputsAndOutputs() {
+        return Promise.all([
+            this._updateInputs(),
+            this._updateOutputs()
+        ]);
+    }
+    async _updateInputs() {
+        if (!this.interface) return;
+        for(let e1 = this._inputs.length - 1; e1 >= 0; e1--){
+            const t1 = this._inputs[e1];
+            Array.from(this.interface.inputs.values()).find((e1)=>e1 === t1._midiInput) || (this._disconnectedInputs.push(t1), this._inputs.splice(e1, 1));
+        }
+        let e1 = [];
+        return this.interface.inputs.forEach((t1)=>{
+            if (!this._inputs.find((e1)=>e1._midiInput === t1)) {
+                let n1 = this._disconnectedInputs.find((e1)=>e1._midiInput === t1);
+                n1 || (n1 = new Input(t1)), this._inputs.push(n1), e1.push(n1.open());
+            }
+        }), Promise.all(e1);
+    }
+    async _updateOutputs() {
+        if (!this.interface) return;
+        for(let e1 = this._outputs.length - 1; e1 >= 0; e1--){
+            const t1 = this._outputs[e1];
+            Array.from(this.interface.outputs.values()).find((e1)=>e1 === t1._midiOutput) || (this._disconnectedOutputs.push(t1), this._outputs.splice(e1, 1));
+        }
+        let e1 = [];
+        return this.interface.outputs.forEach((t1)=>{
+            if (!this._outputs.find((e1)=>e1._midiOutput === t1)) {
+                let n1 = this._disconnectedOutputs.find((e1)=>e1._midiOutput === t1);
+                n1 || (n1 = new Output(t1)), this._outputs.push(n1), e1.push(n1.open());
+            }
+        }), Promise.all(e1);
+    }
+    get enabled() {
+        return null !== this.interface;
+    }
+    get inputs() {
+        return this._inputs;
+    }
+    get isNode() {
+        return this.validation && console.warn("WebMidi.isNode has been deprecated. Use Utilities.isNode instead."), Utilities.isNode;
+    }
+    get isBrowser() {
+        return this.validation && console.warn("WebMidi.isBrowser has been deprecated. Use Utilities.isBrowser instead."), Utilities.isBrowser;
+    }
+    get octaveOffset() {
+        return this._octaveOffset;
+    }
+    set octaveOffset(e1) {
+        if (this.validation && (e1 = parseInt(e1), isNaN(e1))) throw new TypeError("The 'octaveOffset' property must be an integer.");
+        this._octaveOffset = e1;
+    }
+    get outputs() {
+        return this._outputs;
+    }
+    get supported() {
+        return "undefined" != typeof navigator && !!navigator.requestMIDIAccess;
+    }
+    get sysexEnabled() {
+        return !(!this.interface || !this.interface.sysexEnabled);
+    }
+    get time() {
+        return performance.now();
+    }
+    get version() {
+        return "3.1.12";
+    }
+    get flavour() {
+        return "cjs";
+    }
+    get CHANNEL_EVENTS() {
+        return this.validation && console.warn("The CHANNEL_EVENTS enum has been moved to Enumerations.CHANNEL_EVENTS."), Enumerations.CHANNEL_EVENTS;
+    }
+    get MIDI_SYSTEM_MESSAGES() {
+        return this.validation && console.warn("The MIDI_SYSTEM_MESSAGES enum has been moved to Enumerations.SYSTEM_MESSAGES."), Enumerations.SYSTEM_MESSAGES;
+    }
+    get MIDI_CHANNEL_MODE_MESSAGES() {
+        return this.validation && console.warn("The MIDI_CHANNEL_MODE_MESSAGES enum has been moved to Enumerations.CHANNEL_MODE_MESSAGES."), Enumerations.CHANNEL_MODE_MESSAGES;
+    }
+    get MIDI_CONTROL_CHANGE_MESSAGES() {
+        return this.validation && console.warn("The MIDI_CONTROL_CHANGE_MESSAGES enum has been replaced by the Enumerations.CONTROL_CHANGE_MESSAGES array."), Enumerations.MIDI_CONTROL_CHANGE_MESSAGES;
+    }
+    get MIDI_REGISTERED_PARAMETER() {
+        return this.validation && console.warn("The MIDI_REGISTERED_PARAMETER enum has been moved to Enumerations.REGISTERED_PARAMETERS."), Enumerations.REGISTERED_PARAMETERS;
+    }
+    get NOTES() {
+        return this.validation && console.warn("The NOTES enum has been deprecated."), [
+            "C",
+            "C#",
+            "D",
+            "D#",
+            "E",
+            "F",
+            "F#",
+            "G",
+            "G#",
+            "A",
+            "A#",
+            "B"
+        ];
+    }
+}
+const wm = new WebMidi;
+wm.constructor = null, exports.Enumerations = Enumerations, exports.Forwarder = Forwarder, exports.Input = Input, exports.InputChannel = InputChannel, exports.Message = Message, exports.Note = Note, exports.Output = Output, exports.OutputChannel = OutputChannel, exports.Utilities = Utilities, exports.WebMidi = wm;
+
+},{"efe8767325d23004":"d5jf4"}],"d5jf4":[function(require,module,exports) {
+// shim for using process in browser
+var process = module.exports = {};
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+var cachedSetTimeout;
+var cachedClearTimeout;
+function defaultSetTimout() {
+    throw new Error("setTimeout has not been defined");
+}
+function defaultClearTimeout() {
+    throw new Error("clearTimeout has not been defined");
+}
+(function() {
+    try {
+        if (typeof setTimeout === "function") cachedSetTimeout = setTimeout;
+        else cachedSetTimeout = defaultSetTimout;
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === "function") cachedClearTimeout = clearTimeout;
+        else cachedClearTimeout = defaultClearTimeout;
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+})();
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) //normal enviroments in sane situations
+    return setTimeout(fun, 0);
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch (e) {
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch (e) {
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) //normal enviroments in sane situations
+    return clearTimeout(marker);
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e) {
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e) {
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) return;
+    draining = false;
+    if (currentQueue.length) queue = currentQueue.concat(queue);
+    else queueIndex = -1;
+    if (queue.length) drainQueue();
+}
+function drainQueue() {
+    if (draining) return;
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+    var len = queue.length;
+    while(len){
+        currentQueue = queue;
+        queue = [];
+        while(++queueIndex < len)if (currentQueue) currentQueue[queueIndex].run();
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+process.nextTick = function(fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) for(var i = 1; i < arguments.length; i++)args[i - 1] = arguments[i];
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) runTimeout(drainQueue);
+};
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function() {
+    this.fun.apply(null, this.array);
+};
+process.title = "browser";
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ""; // empty string to avoid regexp issues
+process.versions = {};
+function noop() {}
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+process.listeners = function(name) {
+    return [];
+};
+process.binding = function(name) {
+    throw new Error("process.binding is not supported");
+};
+process.cwd = function() {
+    return "/";
+};
+process.chdir = function(dir) {
+    throw new Error("process.chdir is not supported");
+};
+process.umask = function() {
+    return 0;
+};
+
+},{}],"5Vjgk":[function(require,module,exports) {
 var global = arguments[3];
 /*!
  *  howler.js v2.2.4
